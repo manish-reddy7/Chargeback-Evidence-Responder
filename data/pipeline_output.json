@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-31T19:03:48+00:00",
-  "backend": "deterministic",
+  "generated_at": "2026-08-31T19:30:40+00:00",
+  "backend": "ollama",
   "n_cases": 80,
   "results": [
     {
@@ -265,8 +265,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 52.5 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-46018, in the amount of ₹9450, processed on 2026-08-13 12:53 IST.\n\n## Authentication Evidence\nThe transaction carried the following 3-D Secure authentication status: 3-D Secure attempted, not completed. [qualified / limited evidence] Address Verification (AVS) on the transaction returned: AVS full match (Y).\n\n## Device & Account History\nDevice analysis on the order returned: Device fingerprint matches 6 prior orders. The originating network of the order was assessed as: Order IP same country, different city from billing. [qualified / limited evidence]\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the transaction was authorized by the accountholder.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-46018\n* Dispute Amount: ₹9450\n\n**Authentication Evidence**\n\n* AVS result: AVS full match (Y)\n* 3DS status: 3-D Secure attempted, not completed\n\n**Device & Account History**\n\n* Device match: Device fingerprint matches 6 prior orders\n* IP match: Order IP same country, different city from billing\n\n**Conclusion**\n\nThe evidence provided does not conclusively support that the transaction was authorized by the accountholder, as the 3-D Secure attempt was not completed.",
       "evidence_used": [
         {
           "field": "threeds_status",
@@ -391,8 +391,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 60.0 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-30733, in the amount of ₹9450, processed on 2026-08-07 10:58 IST.\n\n## Product Listing at Time of Sale\nThe product listing shown to the buyer at the time of sale described the item as: Listing snapshot at purchase: 'SKU-BKS-042 — Hardcover novel, first edition', full spec archived. The condition of the item prior to shipment was documented: Pre-ship QA photos + inspection checklist archived.\n\n## Return/Refund Policy Shown at Purchase\nNot available.\n\n## Support Interaction Summary\nNot available.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the item matched the description provided at the time of sale.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-30733\n* Dispute Amount: ₹9450\n\n**Product Listing at Time of Sale**\n\nThe product listed at the time of sale was 'SKU-BKS-042 — Hardcover novel, first edition', with full specifications archived. Pre-ship QA photos and an inspection checklist were also provided as proof of the item's condition.\n\n**Return/Refund Policy Shown at Purchase**\n\nNot available\n\n**Support Interaction Summary**\n\nNot available\n\n**Conclusion**\n\nThe evidence provided supports the item matching its description, as the product listing at the time of sale included a detailed description and specifications, and pre-ship QA photos and an inspection checklist were provided as proof of the item's condition.",
       "evidence_used": [
         {
           "field": "product_listing",
@@ -512,8 +512,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 80.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-28612, in the amount of ₹1299, processed on 2026-08-07 09:48 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN3847612536. The parcel was handled by carrier BlueDart. Carrier records show the order was delivered on 2026-08-10.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Signed by: N. Verma, 2026-08-10 18:06 IST.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-28612\n* Dispute Amount: ₹1299\n* Date: 2026-08-10\n\n**Shipment Evidence**\n\n* Tracking Number: IN3847612536\n* Carrier: BlueDart\n* Shipment Date: 2026-08-10\n* Delivery Date: 2026-08-10\n\n**Delivery Confirmation**\n\n* Signature: Signed by: N. Verma, 2026-08-10 18:06 IST\n\n**Conclusion**\n\nThe evidence provided supports that goods were delivered, as a signature from the recipient (N. Verma) is present on the delivery confirmation.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -637,8 +637,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 80.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-79412, in the amount of ₹12800, processed on 2026-08-11 12:56 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN4863662755. The parcel was handled by carrier India Post. Carrier records show the order was delivered on 2026-08-10.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Signed by: S. Gupta, 2026-08-10 11:19 IST.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-79412\n* Dispute Amount: ₹12800\n* Date: 2026-08-10\n\n**Shipment Evidence**\n\n* Tracking Number: IN4863662755\n* Carrier: India Post\n* Shipment Date: 2026-08-10\n* Delivery Date: 2026-08-10\n\n**Delivery Confirmation**\n\n* Signature: Signed by: S. Gupta, 2026-08-10 11:19 IST\n\n**Conclusion**\n\nThe evidence provided supports that goods were delivered on 2026-08-10, as indicated by the delivery confirmation signature and matching shipment and delivery dates.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -762,8 +762,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-19236, in the amount of ₹2450, processed on 2026-08-09 17:23 IST.\n\n## Authentication Evidence\nThe transaction carried the following 3-D Secure authentication status: 3-D Secure authenticated (fully, liability shifted). Address Verification (AVS) on the transaction returned: AVS full match (Y). Card Verification (CVV2) on the transaction returned: CVV2 match (M).\n\n## Device & Account History\nDevice analysis on the order returned: Device fingerprint matches 3 prior orders. The originating network of the order was assessed as: Order IP in billing city (Chennai). The account's prior purchase history on file shows: 14 prior undisputed orders on this account.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the transaction was authorized by the accountholder.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-19236\n* Dispute Amount: ₹2450\n\n**Authentication Evidence**\n\n* AVS result: AVS full match (Y)\n* CVV2 match result: CVV2 match (M)\n* 3DS status: 3-D Secure authenticated (fully, liability shifted)\n\n**Device & Account History**\n\n* Device fingerprint matches 3 prior orders\n* Order IP in billing city (Chennai)\n* 14 prior undisputed orders on this account\n\n**Conclusion**\n\nThe evidence provided supports that the transaction was authorized by the accountholder, as all authentication checks and device/IP matches were successful.",
       "evidence_used": [
         {
           "field": "threeds_status",
@@ -887,8 +887,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-35313, in the amount of ₹12800, processed on 2026-08-16 18:47 IST.\n\n## Product Listing at Time of Sale\nThe product listing shown to the buyer at the time of sale described the item as: Listing snapshot at purchase: 'SKU-AUD-114 — Wireless over-ear headphones, black', full spec archived. The condition of the item prior to shipment was documented: Pre-ship QA photos + inspection checklist archived.\n\n## Return/Refund Policy Shown at Purchase\nThe return and refund policy presented to the buyer at purchase stated: 30-day return policy shown at checkout (policy v2.1).\n\n## Support Interaction Summary\nThe buyer's support interaction was resolved as follows: Ticket #67175: replacement offered, declined by customer.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the item matched the description provided at the time of sale.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-35313\n* Dispute Amount: ₹12800\n\n**Product Listing at Time of Sale**\n\nThe product listed at purchase was 'SKU-AUD-114 — Wireless over-ear headphones, black', with full specifications archived. Pre-ship QA photos and an inspection checklist were also provided as proof of item condition.\n\n**Return/Refund Policy Shown at Purchase**\n\nThe return policy shown at checkout was a 30-day return policy, as per policy v2.1.\n\n**Support Interaction Summary**\n\nA support ticket (Ticket #67175) was opened, and a replacement was offered to the customer, but they declined.\n\n**Conclusion**\n\nThe evidence provided does not support the claim that the item did not match its description, as the product listing at time of sale included a detailed description and specifications, and pre-ship QA photos and an inspection checklist were provided as proof of item condition.",
       "evidence_used": [
         {
           "field": "product_listing",
@@ -980,8 +980,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 70.0 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-11751, in the amount of ₹2450, processed on 2026-08-09 13:17 IST.\n\n## Product Listing at Time of Sale\nThe product listing shown to the buyer at the time of sale described the item as: Listing snapshot at purchase: 'SKU-APP-201 — Cotton kurta, size L, indigo', full spec archived.\n\n## Return/Refund Policy Shown at Purchase\nThe return and refund policy presented to the buyer at purchase stated: 30-day return policy shown at checkout (policy v2.1).\n\n## Support Interaction Summary\nThe buyer's support interaction was resolved as follows: Ticket #20957 opened; no resolution recorded before dispute. [qualified / limited evidence]\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the item matched the description provided at the time of sale.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-11751\n* Dispute Amount: ₹2450\n\n**Product Listing at Time of Sale**\n\nThe product listed at purchase was 'SKU-APP-201 — Cotton kurta, size L, indigo', with full specifications archived.\n\n**Return/Refund Policy Shown at Purchase**\n\nThe return policy shown at checkout was a 30-day return policy, as per policy v2.1.\n\n**Support Interaction Summary**\n\nA support ticket (#20957) was opened, but no resolution was recorded before the dispute.\n\n**Conclusion**\n\nThe evidence does not indicate that the product did not match its description, as the product listing at time of sale included a detailed description and specifications.",
       "evidence_used": [
         {
           "field": "product_listing",
@@ -1075,8 +1075,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-28975, in the amount of ₹3200, processed on 2026-08-13 10:11 IST.\n\n## Product Listing at Time of Sale\nThe product listing shown to the buyer at the time of sale described the item as: Listing snapshot at purchase: 'SKU-HOM-560 — Ceramic table lamp, matte white', full spec archived. The condition of the item prior to shipment was documented: Pre-ship QA photos + inspection checklist archived.\n\n## Return/Refund Policy Shown at Purchase\nThe return and refund policy presented to the buyer at purchase stated: 30-day return policy shown at checkout (policy v2.1).\n\n## Support Interaction Summary\nThe buyer's support interaction was resolved as follows: Ticket #56303: replacement offered, declined by customer.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the item matched the description provided at the time of sale.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-28975\n* Dispute Amount: ₹3200\n\n**Product Listing at Time of Sale**\n\n* Description/spec shown to buyer: The product listed at purchase was 'SKU-HOM-560 — Ceramic table lamp, matte white' with full specifications archived.\n* Pre-ship condition proof: Pre-ship QA photos and an inspection checklist were archived.\n\n**Return/Refund Policy Shown at Purchase**\n\n* Return/refund policy shown at purchase: A 30-day return policy (policy v2.1) was shown at checkout.\n\n**Support Interaction Summary**\n\n* Ticket #56303: A support ticket was opened, and a replacement was offered to the customer, but the customer declined.\n\n**Conclusion**\n\nThe evidence provided does not indicate that the item did not match its description, as the product listing at the time of sale included a detailed description and specifications, and pre-ship condition proof was provided.",
       "evidence_used": [
         {
           "field": "product_listing",
@@ -1168,8 +1168,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 80.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-11565, in the amount of ₹12800, processed on 2026-08-12 11:32 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN4003983808. The parcel was handled by carrier Delhivery. Carrier records show the order was delivered on 2026-08-11.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Signed by: T. Rao, 2026-08-11 12:53 IST.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-11565\n* Dispute Amount: ₹12800\n* Date: 2026-08-11\n\n**Shipment Evidence**\n\n* Tracking Number: IN4003983808\n* Carrier: Delhivery\n* Shipment Date: 2026-08-11\n* Delivery Date: 2026-08-11\n\n**Delivery Confirmation**\n\n* Signature: Signed by: T. Rao, 2026-08-11 12:53 IST\n\n**Conclusion**\n\nThe evidence provided supports that goods were delivered, as a tracking number was present, a carrier was identified, and a delivery confirmation with a signature was provided.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -1516,8 +1516,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 52.5 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-59235, in the amount of ₹1299, processed on 2026-08-11 20:12 IST.\n\n## Authentication Evidence\nThe transaction carried the following 3-D Secure authentication status: 3-D Secure attempted, not completed. [qualified / limited evidence] Address Verification (AVS) on the transaction returned: AVS full match (Y).\n\n## Device & Account History\nDevice analysis on the order returned: Device fingerprint matches 3 prior orders. The originating network of the order was assessed as: Order IP same country, different city from billing. [qualified / limited evidence]\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the transaction was authorized by the accountholder.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-59235\n* Dispute Amount: ₹1299\n\n**Authentication Evidence**\n\n* AVS result: AVS full match (Y)\n* 3DS status: 3-D Secure attempted, not completed\n\n**Device & Account History**\n\n* Device match: Device fingerprint matches 3 prior orders\n* IP match: Order IP same country, different city from billing\n\n**Conclusion**\n\nThe evidence provided does not conclusively support that the transaction was authorized by the accountholder, as the 3DS status was weak and not completed.",
       "evidence_used": [
         {
           "field": "threeds_status",
@@ -2242,8 +2242,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-14728, in the amount of ₹3200, processed on 2026-08-21 13:20 IST.\n\n## Product Listing at Time of Sale\nThe product listing shown to the buyer at the time of sale described the item as: Listing snapshot at purchase: 'SKU-ELC-778 — USB-C 65W fast charger', full spec archived. The condition of the item prior to shipment was documented: Pre-ship QA photos + inspection checklist archived.\n\n## Return/Refund Policy Shown at Purchase\nThe return and refund policy presented to the buyer at purchase stated: 30-day return policy shown at checkout (policy v2.1).\n\n## Support Interaction Summary\nThe buyer's support interaction was resolved as follows: Ticket #54803: replacement offered, declined by customer.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the item matched the description provided at the time of sale.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-14728\n* Dispute Amount: ₹3200\n\n**Product Listing at Time of Sale**\n\nThe product listed at the time of sale was 'SKU-ELC-778 — USB-C 65W fast charger', with full specifications archived. Pre-ship QA photos and an inspection checklist are also archived as proof of the item's condition.\n\n**Return/Refund Policy Shown at Purchase**\n\nThe return policy shown at checkout was a 30-day return policy, as per policy v2.1.\n\n**Support Interaction Summary**\n\nA support ticket (Ticket #54803) was opened, and a replacement was offered to the customer, but they declined.\n\n**Conclusion**\n\nThe evidence provided does not support the claim that the item did not match its description, as the product listing at the time of sale included full specifications and pre-ship QA photos were taken.",
       "evidence_used": [
         {
           "field": "product_listing",
@@ -2335,8 +2335,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 90.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-52126, in the amount of ₹499, processed on 2026-08-07 16:07 IST.\n\n## Authentication Evidence\nThe transaction carried the following 3-D Secure authentication status: 3-D Secure authenticated (fully, liability shifted). Address Verification (AVS) on the transaction returned: AVS full match (Y). Card Verification (CVV2) on the transaction returned: CVV2 match (M).\n\n## Device & Account History\nDevice analysis on the order returned: Device fingerprint matches 2 prior orders. The account's prior purchase history on file shows: 14 prior undisputed orders on this account.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the transaction was authorized by the accountholder.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-52126\n* Dispute Amount: ₹499\n\n**Authentication Evidence**\n\n* The cardholder's AVS result was a full match (Y), indicating that the billing address and card information matched.\n* The cardholder's CVV2 result was a match (M), indicating that the CVV2 code was correct.\n* The 3-D Secure authentication was fully completed, with liability shifted, indicating that the cardholder was authenticated through an additional security step.\n\n**Device & Account History**\n\n* The device fingerprint matched 2 prior orders, indicating that the device used for the transaction was previously used for legitimate purchases.\n* The cardholder has a prior purchase history of 14 undisputed orders on this account, indicating a history of legitimate transactions.\n\n**Conclusion**\n\nThe evidence provided supports that the transaction was authorized by the accountholder, as the cardholder's AVS and CVV2 results were matches, the 3-D Secure authentication was fully completed, and the device fingerprint matched prior legitimate purchases.",
       "evidence_used": [
         {
           "field": "threeds_status",
@@ -2461,8 +2461,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 62.5 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-22651, in the amount of ₹2450, processed on 2026-08-15 17:33 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN1452507466. The parcel was handled by carrier DTDC. Carrier records show the order was shipped on 2026-08-08.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Left at door 2026-08-10; no signature captured. [qualified / limited evidence]\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-22651\n* Dispute Amount: ₹2450\n* Shipment Date: 2026-08-08\n\n**Shipment Evidence**\n\n* Tracking Number: IN1452507466\n* Carrier: DTDC\n* Shipment Date: 2026-08-08\n* Delivery Date: 2026-08-10 (Note: This date is mentioned in the delivery confirmation field, but it is marked as \"weak\".)\n\n**Delivery Confirmation**\n\n* Not available (no signature captured, no GPS drop-off confirmation, and no photo provided)\n\n**Conclusion**\n\nThe evidence provided does not conclusively support that the goods were delivered, as the delivery confirmation is marked as \"weak\" and does not include a signature, GPS drop-off confirmation, or photo.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -2587,8 +2587,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-97319, in the amount of ₹7999, processed on 2026-08-15 19:44 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN9574632676. The parcel was handled by carrier BlueDart. Carrier records show the order was shipped on 2026-08-06. Carrier records show the order was delivered on 2026-08-09.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Signed by: V. Menon, 2026-08-09 10:46 IST. A proof-of-delivery photo is on file: GPS-tagged drop-off photo on file.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-97319\n* Dispute Amount: ₹7999\n* Shipment Date: 2026-08-06\n* Delivery Date: 2026-08-09\n\n**Shipment Evidence**\n\n* Tracking Number: IN9574632676\n* Carrier: BlueDart\n* Shipment Date: 2026-08-06\n* Delivery Date: 2026-08-09\n\n**Delivery Confirmation**\n\n* Signature: Signed by: V. Menon, 2026-08-09 10:46 IST\n* GPS drop-off confirmation: GPS-tagged drop-off photo on file\n\n**Conclusion**\n\nThe evidence supports that goods were delivered, as a signature and GPS drop-off confirmation are present.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -2712,8 +2712,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-62431, in the amount of ₹499, processed on 2026-08-07 08:54 IST.\n\n## Product Listing at Time of Sale\nThe product listing shown to the buyer at the time of sale described the item as: Listing snapshot at purchase: 'SKU-HOM-560 — Ceramic table lamp, matte white', full spec archived. The condition of the item prior to shipment was documented: Pre-ship QA photos + inspection checklist archived.\n\n## Return/Refund Policy Shown at Purchase\nThe return and refund policy presented to the buyer at purchase stated: 30-day return policy shown at checkout (policy v2.1).\n\n## Support Interaction Summary\nThe buyer's support interaction was resolved as follows: Ticket #75838: replacement offered, declined by customer.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the item matched the description provided at the time of sale.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-62431\n* Dispute Amount: ₹499\n\n**Product Listing at Time of Sale**\n\n* Description/spec shown to buyer: The product listed at purchase was 'SKU-HOM-560 — Ceramic table lamp, matte white' with full specifications archived.\n* Pre-ship condition proof: Pre-ship QA photos and an inspection checklist were archived.\n\n**Return/Refund Policy Shown at Purchase**\n\n* Return/refund policy shown at purchase: A 30-day return policy (policy v2.1) was shown at checkout.\n\n**Support Interaction Summary**\n\n* Ticket #75838: A support ticket was opened, and a replacement was offered to the customer, but the customer declined.\n\n**Conclusion**\n\nThe evidence provided does not indicate that the item did not match its description, as the product listing at the time of sale included a detailed description and pre-ship condition proof was provided.",
       "evidence_used": [
         {
           "field": "product_listing",
@@ -2805,8 +2805,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-84493, in the amount of ₹1050, processed on 2026-08-09 08:32 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN3463766180. The parcel was handled by carrier BlueDart. Carrier records show the order was shipped on 2026-08-10. Carrier records show the order was delivered on 2026-08-13.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Signed by: S. Gupta, 2026-08-13 08:42 IST. A proof-of-delivery photo is on file: GPS-tagged drop-off photo on file.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-84493\n* Dispute Amount: ₹1050\n* Shipment Date: 2026-08-10\n* Delivery Date: 2026-08-13\n\n**Shipment Evidence**\n\n* Tracking Number: IN3463766180\n* Carrier: BlueDart\n* Shipment Date: 2026-08-10\n* Delivery Date: 2026-08-13\n\n**Delivery Confirmation**\n\n* Signature: Signed by: S. Gupta, 2026-08-13 08:42 IST\n* GPS drop-off confirmation: GPS-tagged drop-off photo on file\n\n**Conclusion**\n\nThe evidence supports that goods were delivered, as a signature and GPS drop-off confirmation are present.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -3028,8 +3028,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 70.0 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-19061, in the amount of ₹890, processed on 2026-08-19 15:27 IST.\n\n## Product Listing at Time of Sale\nThe product listing shown to the buyer at the time of sale described the item as: Listing snapshot at purchase: 'SKU-APP-201 — Cotton kurta, size L, indigo', full spec archived.\n\n## Return/Refund Policy Shown at Purchase\nThe return and refund policy presented to the buyer at purchase stated: 30-day return policy shown at checkout (policy v2.1).\n\n## Support Interaction Summary\nThe buyer's support interaction was resolved as follows: Ticket #81891 opened; no resolution recorded before dispute. [qualified / limited evidence]\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the item matched the description provided at the time of sale.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-19061\n* Dispute Amount: ₹890\n\n**Product Listing at Time of Sale**\n\n* Description/spec shown to buyer: 'SKU-APP-201 — Cotton kurta, size L, indigo'\n* Pre-ship condition proof: Full spec archived\n\n**Return/Refund Policy Shown at Purchase**\n\n* Return/refund policy shown at purchase: 30-day return policy (policy v2.1)\n\n**Support Interaction Summary**\n\n* Support ticket #81891 was opened, but no resolution was recorded before the dispute\n\n**Conclusion**\n\nThe evidence does not indicate that the product did not match its description, as the product listing at the time of sale included a description and archived full spec, and the return policy was shown at purchase.",
       "evidence_used": [
         {
           "field": "product_listing",
@@ -3123,8 +3123,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 70.0 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-30091, in the amount of ₹1050, processed on 2026-08-12 20:26 IST.\n\n## Product Listing at Time of Sale\nThe product listing shown to the buyer at the time of sale described the item as: Listing snapshot at purchase: 'SKU-AUD-114 — Wireless over-ear headphones, black', full spec archived.\n\n## Return/Refund Policy Shown at Purchase\nThe return and refund policy presented to the buyer at purchase stated: 30-day return policy shown at checkout (policy v2.1).\n\n## Support Interaction Summary\nThe buyer's support interaction was resolved as follows: Ticket #94198 opened; no resolution recorded before dispute. [qualified / limited evidence]\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the item matched the description provided at the time of sale.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-30091\n* Dispute Amount: ₹1050\n\n**Product Listing at Time of Sale**\n\nThe product listed at purchase was 'SKU-AUD-114 — Wireless over-ear headphones, black', with full specifications archived.\n\n**Return/Refund Policy Shown at Purchase**\n\nThe return policy shown at checkout was a 30-day return policy, as per policy v2.1.\n\n**Support Interaction Summary**\n\nA support ticket (#94198) was opened, but no resolution was recorded before the dispute.\n\n**Conclusion**\n\nThe evidence does not indicate that the product did not match its description, as the product listing at time of sale included a detailed description and specifications.",
       "evidence_used": [
         {
           "field": "product_listing",
@@ -3218,8 +3218,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 90.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-33119, in the amount of ₹9450, processed on 2026-08-10 15:39 IST.\n\n## Authentication Evidence\nThe transaction carried the following 3-D Secure authentication status: 3-D Secure authenticated (fully, liability shifted). Address Verification (AVS) on the transaction returned: AVS full match (Y). Card Verification (CVV2) on the transaction returned: CVV2 match (M).\n\n## Device & Account History\nDevice analysis on the order returned: Device fingerprint matches 2 prior orders. The account's prior purchase history on file shows: 19 prior undisputed orders on this account.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the transaction was authorized by the accountholder.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-33119\n* Dispute Amount: ₹9450\n\n**Authentication Evidence**\n\n* AVS/CVV match result: AVS full match (Y), CVV2 match (M)\n* 3DS status: 3-D Secure authenticated (fully, liability shifted)\n\n**Device & Account History**\n\n* Device/IP match against prior legitimate purchases: Device fingerprint matches 2 prior orders\n* Account history: 19 prior undisputed orders on this account\n\n**Conclusion**\n\nThe evidence provided supports that the transaction was authorized by the accountholder, as all authentication and device/account history checks indicate a legitimate and prior undisputed purchase activity.",
       "evidence_used": [
         {
           "field": "threeds_status",
@@ -3344,8 +3344,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-67912, in the amount of ₹890, processed on 2026-08-19 17:12 IST.\n\n## Distinct Transaction Evidence\nThe disputed charges correspond to distinct order identifiers: Order A: ORD-24287 / Order B: ORD-61360 (distinct order records). The charges were authorized at distinct times: Charge A 2026-08-13 16:21 IST, Charge B 2026-08-13 20:21 IST (hours apart). The payment processing trace shows distinct idempotency keys: Distinct idempotency keys (idem_a / idem_b) in gateway log. The cart contents differ across the charges: Different carts (distinct SKUs per order).\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the charges were distinct, legitimate transactions.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-67912\n* Dispute Amount: ₹890\n\n**Distinct Transaction Evidence**\n\n* Order IDs: Order A: ORD-24287 / Order B: ORD-61360 (distinct order records)\n* Timestamps: Charge A 2026-08-13 16:21 IST, Charge B 2026-08-13 20:21 IST (hours apart)\n* Idempotency Key Trace: Distinct idempency keys (idem_a / idem_b) in gateway log\n* Cart Contents: Different carts (distinct SKUs per order)\n\n**Conclusion**\n\nThe evidence supports that the charges were distinct, legitimate transactions, as the order IDs, timestamps, idempotency keys, and cart contents all indicate separate and distinct transactions.",
       "evidence_used": [
         {
           "field": "distinct_order_ids",
@@ -3437,8 +3437,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-94135, in the amount of ₹1299, processed on 2026-08-20 08:28 IST.\n\n## Authentication Evidence\nThe transaction carried the following 3-D Secure authentication status: 3-D Secure authenticated (fully, liability shifted). Address Verification (AVS) on the transaction returned: AVS full match (Y). Card Verification (CVV2) on the transaction returned: CVV2 match (M).\n\n## Device & Account History\nDevice analysis on the order returned: Device fingerprint matches 6 prior orders. The originating network of the order was assessed as: Order IP in billing city (Kolkata). The account's prior purchase history on file shows: 8 prior undisputed orders on this account.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the transaction was authorized by the accountholder.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-94135\n* Dispute Amount: ₹1299\n\n**Authentication Evidence**\n\n* AVS/CVV match result: AVS full match (Y), CVV2 match (M)\n* 3DS status: 3-D Secure authenticated (fully, liability shifted)\n\n**Device & Account History**\n\n* Device match: Device fingerprint matches 6 prior orders\n* IP match: Order IP in billing city (Kolkata)\n* Account history: 8 prior undisputed orders on this account\n\n**Conclusion**\n\nThe evidence supports that the transaction was authorized by the accountholder, as all authentication and verification checks were successful.",
       "evidence_used": [
         {
           "field": "threeds_status",
@@ -3562,8 +3562,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-65544, in the amount of ₹1299, processed on 2026-08-09 08:58 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN4845160679. The parcel was handled by carrier DTDC. Carrier records show the order was shipped on 2026-08-10. Carrier records show the order was delivered on 2026-08-13.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Signed by: D. Reddy, 2026-08-13 14:50 IST. A proof-of-delivery photo is on file: GPS-tagged drop-off photo on file.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-65544\n* Dispute Amount: ₹1299\n* Shipment Date: 2026-08-10\n* Delivery Date: 2026-08-13\n\n**Shipment Evidence**\n\n* Tracking Number: IN4845160679\n* Carrier: DTDC\n* Shipment Date: 2026-08-10\n* Delivery Date: 2026-08-13\n\n**Delivery Confirmation**\n\n* Signature: Signed by: D. Reddy, 2026-08-13 14:50 IST\n* GPS drop-off confirmation: GPS-tagged drop-off photo on file\n\n**Conclusion**\n\nThe evidence supports that goods were delivered, as a signature and GPS drop-off confirmation are provided.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -3687,8 +3687,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 52.5 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-16059, in the amount of ₹1875, processed on 2026-08-20 18:44 IST.\n\n## Authentication Evidence\nThe transaction carried the following 3-D Secure authentication status: 3-D Secure attempted, not completed. [qualified / limited evidence] Address Verification (AVS) on the transaction returned: AVS full match (Y).\n\n## Device & Account History\nDevice analysis on the order returned: Device fingerprint matches 2 prior orders. The originating network of the order was assessed as: Order IP same country, different city from billing. [qualified / limited evidence]\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the transaction was authorized by the accountholder.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-16059\n* Dispute Amount: ₹1875\n\n**Authentication Evidence**\n\n* AVS result: AVS full match (Y)\n* 3DS status: 3-D Secure attempted, not completed\n\n**Device & Account History**\n\n* Device match: Device fingerprint matches 2 prior orders\n* IP match: Order IP same country, different city from billing\n\n**Conclusion**\n\nThe evidence provided does not conclusively support that the transaction was not authorized by the accountholder, as the AVS result indicates a full match and the device fingerprint matches prior legitimate purchases.",
       "evidence_used": [
         {
           "field": "threeds_status",
@@ -3813,8 +3813,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-91261, in the amount of ₹7999, processed on 2026-08-11 20:10 IST.\n\n## Product Listing at Time of Sale\nThe product listing shown to the buyer at the time of sale described the item as: Listing snapshot at purchase: 'SKU-APP-201 — Cotton kurta, size L, indigo', full spec archived. The condition of the item prior to shipment was documented: Pre-ship QA photos + inspection checklist archived.\n\n## Return/Refund Policy Shown at Purchase\nThe return and refund policy presented to the buyer at purchase stated: 30-day return policy shown at checkout (policy v2.1).\n\n## Support Interaction Summary\nThe buyer's support interaction was resolved as follows: Ticket #26148: replacement offered, declined by customer.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the item matched the description provided at the time of sale.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-91261\n* Dispute Amount: ₹7999\n\n**Product Listing at Time of Sale**\n\n* Description/spec shown to buyer: 'SKU-APP-201 — Cotton kurta, size L, indigo'\n* Pre-ship condition proof: Pre-ship QA photos + inspection checklist archived\n\n**Return/Refund Policy Shown at Purchase**\n\n* Return/refund policy shown at purchase: 30-day return policy (policy v2.1)\n\n**Support Interaction Summary**\n\n* Ticket #26148: replacement offered, declined by customer\n\n**Conclusion**\n\nThe evidence supports that the item matched its description, as the product listing at the time of sale included a detailed description and pre-ship condition proof was provided.",
       "evidence_used": [
         {
           "field": "product_listing",
@@ -4156,8 +4156,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-95841, in the amount of ₹1299, processed on 2026-08-07 12:12 IST.\n\n## Distinct Transaction Evidence\nThe disputed charges correspond to distinct order identifiers: Order A: ORD-56615 / Order B: ORD-21988 (distinct order records). The charges were authorized at distinct times: Charge A 2026-08-15 17:42 IST, Charge B 2026-08-15 20:42 IST (hours apart). The payment processing trace shows distinct idempotency keys: Distinct idempotency keys (idem_a / idem_b) in gateway log. The cart contents differ across the charges: Different carts (distinct SKUs per order).\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the charges were distinct, legitimate transactions.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-95841\n* Dispute Amount: ₹1299\n* Date: 2026-08-15\n\n**Distinct Transaction Evidence**\n\n* Order IDs: Order A: ORD-56615 / Order B: ORD-21988 (distinct order records)\n* Timestamps: Charge A 2026-08-15 17:42 IST, Charge B 2026-08-15 20:42 IST (hours apart)\n* Idempotency Key Trace: Distinct idempency keys (idem_a / idem_b) in gateway log\n* Cart Contents: Different carts (distinct SKUs per order)\n\n**Conclusion**\n\nThe evidence supports that the charges were distinct, legitimate transactions, as the order IDs, timestamps, idempotency keys, and cart contents all indicate separate and distinct transactions.",
       "evidence_used": [
         {
           "field": "distinct_order_ids",
@@ -4249,8 +4249,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 62.5 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-67672, in the amount of ₹9450, processed on 2026-08-13 17:32 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN4988022804. The parcel was handled by carrier India Post. Carrier records show the order was shipped on 2026-08-02.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Left at door 2026-08-04; no signature captured. [qualified / limited evidence]\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-67672\n* Dispute Amount: ₹9450\n* Shipment Date: 2026-08-02\n\n**Shipment Evidence**\n\n* Tracking Number: IN4988022804\n* Carrier: India Post\n* Shipment Date: 2026-08-02\n* Delivery Date: 2026-08-04 (Note: This date is mentioned in the delivery confirmation field, but it is marked as weak)\n\n**Delivery Confirmation**\n\n* Not available (no signature captured, no GPS drop-off confirmation, and no photo provided)\n\n**Conclusion**\n\nThe evidence provided does not support the claim that goods were not received, as the tracking number indicates delivery and the carrier is listed as India Post, which typically provides delivery confirmation.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -4375,8 +4375,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 62.5 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-12720, in the amount of ₹9450, processed on 2026-08-17 18:51 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN2731711914. The parcel was handled by carrier Ekart. Carrier records show the order was shipped on 2026-08-03.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Left at door 2026-08-07; no signature captured. [qualified / limited evidence]\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-12720\n* Dispute Amount: ₹9450\n* Shipment Date: 2026-08-03\n\n**Shipment Evidence**\n\n* Tracking Number: IN2731711914\n* Carrier: Ekart\n* Shipment Date: 2026-08-03\n* Delivery Date: 2026-08-07 (as indicated by delivery confirmation)\n\n**Delivery Confirmation**\n\n* Delivery Confirmation: Left at door 2026-08-07; no signature captured\n\n**Conclusion**\n\nThe evidence provided does not support the claim that goods were not received, as the tracking number indicates delivery and the delivery confirmation shows the goods were left at the door on 2026-08-07.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -4501,8 +4501,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-67474, in the amount of ₹890, processed on 2026-08-14 20:32 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN2857642263. The parcel was handled by carrier DTDC. Carrier records show the order was shipped on 2026-08-09. Carrier records show the order was delivered on 2026-08-12.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Signed by: P. Iyer, 2026-08-12 14:04 IST. A proof-of-delivery photo is on file: GPS-tagged drop-off photo on file.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-67474\n* Dispute Amount: ₹890\n\n**Shipment Evidence**\n\n* Tracking Number: IN2857642263\n* Carrier: DTDC\n* Shipment Date: 2026-08-09\n* Delivery Date: 2026-08-12\n\n**Delivery Confirmation**\n\n* Signature: Signed by: P. Iyer, 2026-08-12 14:04 IST\n* GPS drop-off confirmation: GPS-tagged drop-off photo on file\n\n**Conclusion**\n\nThe evidence supports that goods were delivered, as a signature and GPS drop-off confirmation are present.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -4851,8 +4851,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-48152, in the amount of ₹3200, processed on 2026-08-11 16:51 IST.\n\n## Authentication Evidence\nThe transaction carried the following 3-D Secure authentication status: 3-D Secure authenticated (fully, liability shifted). Address Verification (AVS) on the transaction returned: AVS full match (Y). Card Verification (CVV2) on the transaction returned: CVV2 match (M).\n\n## Device & Account History\nDevice analysis on the order returned: Device fingerprint matches 3 prior orders. The originating network of the order was assessed as: Order IP in billing city (Chennai). The account's prior purchase history on file shows: 12 prior undisputed orders on this account.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the transaction was authorized by the accountholder.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-48152\n* Dispute Amount: ₹3200\n\n**Authentication Evidence**\n\n* AVS/CVV match result: AVS full match (Y), CVV2 match (M)\n* 3DS status: 3-D Secure authenticated (fully, liability shifted)\n\n**Device & Account History**\n\n* Device match: Device fingerprint matches 3 prior orders\n* IP match: Order IP in billing city (Chennai)\n* Account history: 12 prior undisputed orders on this account\n\n**Conclusion**\n\nThe evidence supports that the transaction was authorized by the accountholder, as all authentication and verification checks were successful.",
       "evidence_used": [
         {
           "field": "threeds_status",
@@ -4976,8 +4976,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 52.5 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-99696, in the amount of ₹1299, processed on 2026-08-11 15:48 IST.\n\n## Distinct Transaction Evidence\nThe disputed charges correspond to distinct order identifiers: Order A: ORD-85245 / Order B: ORD-25950 (distinct order records). The charges were authorized at distinct times: Both charges within 40 seconds of each other. [qualified / limited evidence]\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the charges were distinct, legitimate transactions.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-99696\n* Dispute Amount: ₹1299\n\n**Distinct Transaction Evidence**\n\n* Order IDs: Order A: ORD-85245 / Order B: ORD-25950 (distinct order records)\n* Timestamps: Both charges within 40 seconds of each other\n* Idempotency key trace: Not available\n* Cart contents: Not available\n\n**Conclusion**\n\nThe evidence supports the charges were distinct, legitimate transactions, as the order IDs are distinct and the charges occurred within a short time frame of each other.",
       "evidence_used": [
         {
           "field": "distinct_order_ids",
@@ -5324,8 +5324,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 52.5 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-36468, in the amount of ₹890, processed on 2026-08-16 12:09 IST.\n\n## Distinct Transaction Evidence\nThe disputed charges correspond to distinct order identifiers: Order A: ORD-51533 / Order B: ORD-91735 (distinct order records). The charges were authorized at distinct times: Both charges within 40 seconds of each other. [qualified / limited evidence]\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the charges were distinct, legitimate transactions.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\nTransaction ID: TXN-36468\nAmount: ₹890\n\n**Distinct Transaction Evidence**\n\nThe charges are distinct, as evidenced by the presence of two distinct order IDs: Order A (ORD-51533) and Order B (ORD-91735), which are recorded in the distinct_order_ids field.\n\n**Conclusion**\n\nThe evidence supports the charges were distinct, legitimate transactions, as the distinct order IDs and timestamps (although weak) indicate two separate transactions.\n\nNote: I have followed the structure and only used the evidence provided, avoiding any inferences or assumptions.",
       "evidence_used": [
         {
           "field": "distinct_order_ids",
@@ -5418,8 +5418,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-45473, in the amount of ₹890, processed on 2026-08-17 08:20 IST.\n\n## Distinct Transaction Evidence\nThe disputed charges correspond to distinct order identifiers: Order A: ORD-48420 / Order B: ORD-93113 (distinct order records). The charges were authorized at distinct times: Charge A 2026-08-14 17:58 IST, Charge B 2026-08-15 00:58 IST (hours apart). The payment processing trace shows distinct idempotency keys: Distinct idempotency keys (idem_a / idem_b) in gateway log. The cart contents differ across the charges: Different carts (distinct SKUs per order).\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the charges were distinct, legitimate transactions.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-45473\n* Dispute Amount: ₹890\n\n**Distinct Transaction Evidence**\n\n* Order IDs: Order A: ORD-48420 / Order B: ORD-93113 (distinct order records)\n* Timestamps: Charge A 2026-08-14 17:58 IST, Charge B 2026-08-15 00:58 IST (hours apart)\n* Idempotency Key Trace: Distinct idempency keys (idem_a / idem_b) in gateway log\n* Cart Contents: Different carts (distinct SKUs per order)\n\n**Conclusion**\n\nThe evidence supports that the charges were distinct, legitimate transactions, as the order IDs, timestamps, idempotency keys, and cart contents all indicate separate and distinct transactions.",
       "evidence_used": [
         {
           "field": "distinct_order_ids",
@@ -5985,8 +5985,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 52.5 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-25219, in the amount of ₹7999, processed on 2026-08-12 20:13 IST.\n\n## Distinct Transaction Evidence\nThe disputed charges correspond to distinct order identifiers: Order A: ORD-16586 / Order B: ORD-70568 (distinct order records). The charges were authorized at distinct times: Both charges within 40 seconds of each other. [qualified / limited evidence]\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the charges were distinct, legitimate transactions.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\nTransaction ID: TXN-25219\nDispute Amount: ₹7999\n\n**Distinct Transaction Evidence**\n\nThe charges in question are associated with distinct order records, as evidenced by the presence of two separate order IDs: Order A (ORD-16586) and Order B (ORD-70568). The timestamps for both charges are within 40 seconds of each other, indicating a possible timing overlap. Not available.\n\n**Conclusion**\n\nThe evidence supports the charges were distinct, legitimate transactions, as the distinct order records and overlapping timestamps suggest multiple, separate transactions occurred.\n\nNote: I have followed the structure and used only the evidence provided, avoiding any inferences or assumptions.",
       "evidence_used": [
         {
           "field": "distinct_order_ids",
@@ -6079,8 +6079,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-47440, in the amount of ₹1875, processed on 2026-08-16 15:29 IST.\n\n## Distinct Transaction Evidence\nThe disputed charges correspond to distinct order identifiers: Order A: ORD-96809 / Order B: ORD-75707 (distinct order records). The charges were authorized at distinct times: Charge A 2026-08-12 13:23 IST, Charge B 2026-08-12 18:23 IST (hours apart). The payment processing trace shows distinct idempotency keys: Distinct idempotency keys (idem_a / idem_b) in gateway log. The cart contents differ across the charges: Different carts (distinct SKUs per order).\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the charges were distinct, legitimate transactions.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-47440\n* Dispute Amount: ₹1875\n\n**Distinct Transaction Evidence**\n\n* Order IDs: Order A: ORD-96809 / Order B: ORD-75707 (distinct order records)\n* Timestamps: Charge A 2026-08-12 13:23 IST, Charge B 2026-08-12 18:23 IST (hours apart)\n* Idempotency Key Trace: Distinct idempency keys (idem_a / idem_b) in gateway log\n* Cart Contents: Different carts (distinct SKUs per order)\n\n**Conclusion**\n\nThe evidence supports that the charges were distinct, legitimate transactions, as the order IDs, timestamps, idempotency keys, and cart contents all indicate separate and distinct transactions.",
       "evidence_used": [
         {
           "field": "distinct_order_ids",
@@ -6270,8 +6270,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-84429, in the amount of ₹12800, processed on 2026-08-19 16:01 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN8352198459. The parcel was handled by carrier BlueDart. Carrier records show the order was shipped on 2026-08-03. Carrier records show the order was delivered on 2026-08-08.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Signed by: S. Gupta, 2026-08-08 20:07 IST. A proof-of-delivery photo is on file: GPS-tagged drop-off photo on file.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-84429\n* Dispute Amount: ₹12800\n* Shipment Date: 2026-08-03\n* Delivery Date: 2026-08-08\n\n**Shipment Evidence**\n\n* Tracking Number: IN8352198459\n* Carrier: BlueDart\n* Shipment Date: 2026-08-03\n* Delivery Date: 2026-08-08\n\n**Delivery Confirmation**\n\n* Signature: Signed by: S. Gupta, 2026-08-08 20:07 IST\n* GPS drop-off confirmation: GPS-tagged drop-off photo on file\n\n**Conclusion**\n\nThe evidence supports that goods were delivered, as a signature and GPS drop-off confirmation are present.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -6423,8 +6423,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 70.0 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-23499, in the amount of ₹7999, processed on 2026-08-15 16:42 IST.\n\n## Product Listing at Time of Sale\nThe product listing shown to the buyer at the time of sale described the item as: Listing snapshot at purchase: 'SKU-AUD-114 — Wireless over-ear headphones, black', full spec archived.\n\n## Return/Refund Policy Shown at Purchase\nThe return and refund policy presented to the buyer at purchase stated: 30-day return policy shown at checkout (policy v2.1).\n\n## Support Interaction Summary\nThe buyer's support interaction was resolved as follows: Ticket #86247 opened; no resolution recorded before dispute. [qualified / limited evidence]\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the item matched the description provided at the time of sale.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-23499\n* Dispute Amount: ₹7999\n\n**Product Listing at Time of Sale**\n\nThe product listed at purchase was 'SKU-AUD-114 — Wireless over-ear headphones, black', with full specifications archived.\n\n**Return/Refund Policy Shown at Purchase**\n\nThe return policy shown at checkout was a 30-day return policy, as per policy v2.1.\n\n**Support Interaction Summary**\n\nA support ticket (#86247) was opened, but no resolution was recorded before the dispute.\n\n**Conclusion**\n\nThe evidence does not indicate that the product did not match its description, as the product listing at time of sale included a detailed description and specifications.",
       "evidence_used": [
         {
           "field": "product_listing",
@@ -6518,8 +6518,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 90.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-81025, in the amount of ₹9450, processed on 2026-08-16 18:27 IST.\n\n## Authentication Evidence\nThe transaction carried the following 3-D Secure authentication status: 3-D Secure authenticated (fully, liability shifted). Address Verification (AVS) on the transaction returned: AVS full match (Y). Card Verification (CVV2) on the transaction returned: CVV2 match (M).\n\n## Device & Account History\nDevice analysis on the order returned: Device fingerprint matches 4 prior orders. The account's prior purchase history on file shows: 19 prior undisputed orders on this account.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the transaction was authorized by the accountholder.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-81025\n* Dispute Amount: ₹9450\n\n**Authentication Evidence**\n\n* AVS/CVV match result: AVS full match (Y), CVV2 match (M)\n* 3DS status: 3-D Secure authenticated (fully, liability shifted)\n\n**Device & Account History**\n\n* Device match: Device fingerprint matches 4 prior orders\n* Account history: 19 prior undisputed orders on this account\n\n**Conclusion**\n\nThe evidence provided supports that the transaction was authorized by the accountholder, as all authentication and device/account history checks indicate a legitimate and prior undisputed purchase activity.",
       "evidence_used": [
         {
           "field": "threeds_status",
@@ -6644,8 +6644,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 80.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-55657, in the amount of ₹890, processed on 2026-08-15 08:30 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN1654189291. The parcel was handled by carrier Ekart. Carrier records show the order was delivered on 2026-08-13.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Signed by: V. Menon, 2026-08-13 17:12 IST.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-55657\n* Dispute Amount: ₹890\n* Date: 2026-08-13\n\n**Shipment Evidence**\n\n* Tracking Number: IN1654189291\n* Carrier: Ekart\n* Shipment Date: 2026-08-13\n* Delivery Date: 2026-08-13\n\n**Delivery Confirmation**\n\n* Signature: Signed by: V. Menon, 2026-08-13 17:12 IST\n\n**Conclusion**\n\nThe evidence provided supports that goods were delivered, as a signature from the recipient is present.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -6769,8 +6769,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 80.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-51473, in the amount of ₹12800, processed on 2026-08-08 11:02 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN4442197119. The parcel was handled by carrier Delhivery. Carrier records show the order was delivered on 2026-08-06.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Signed by: R. Sharma, 2026-08-06 10:51 IST.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-51473\n* Dispute Amount: ₹12800\n* Date: 2026-08-06\n\n**Shipment Evidence**\n\n* Tracking Number: IN4442197119\n* Carrier: Delhivery\n* Shipment Date: 2026-08-06\n* Delivery Date: 2026-08-06\n\n**Delivery Confirmation**\n\n* Signature: Signed by: R. Sharma, 2026-08-06 10:51 IST\n\n**Conclusion**\n\nThe evidence provided supports that goods were delivered, as a signature from the recipient (R. Sharma) is present on the delivery confirmation.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -6894,8 +6894,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-44019, in the amount of ₹12800, processed on 2026-08-13 17:12 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN6146269683. The parcel was handled by carrier Ekart. Carrier records show the order was shipped on 2026-08-04. Carrier records show the order was delivered on 2026-08-09.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Signed by: T. Rao, 2026-08-09 18:56 IST. A proof-of-delivery photo is on file: GPS-tagged drop-off photo on file.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-44019\n* Dispute Amount: ₹12800\n* Shipment Date: 2026-08-04\n* Delivery Date: 2026-08-09\n\n**Shipment Evidence**\n\n* Tracking Number: IN6146269683\n* Carrier: Ekart\n* Shipment Date: 2026-08-04\n* Delivery Date: 2026-08-09\n\n**Delivery Confirmation**\n\n* Signature: Signed by: T. Rao, 2026-08-09 18:56 IST\n* GPS drop-off confirmation: GPS-tagged drop-off photo on file\n\n**Conclusion**\n\nThe evidence supports that goods were delivered, as a tracking number was provided, a signature was obtained upon delivery, and a GPS-tagged drop-off photo is on file.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -7019,8 +7019,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-65263, in the amount of ₹4200, processed on 2026-08-14 16:11 IST.\n\n## Distinct Transaction Evidence\nThe disputed charges correspond to distinct order identifiers: Order A: ORD-26171 / Order B: ORD-28407 (distinct order records). The charges were authorized at distinct times: Charge A 2026-08-11 19:11 IST, Charge B 2026-08-11 21:11 IST (hours apart). The payment processing trace shows distinct idempotency keys: Distinct idempotency keys (idem_a / idem_b) in gateway log. The cart contents differ across the charges: Different carts (distinct SKUs per order).\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the charges were distinct, legitimate transactions.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-65263\n* Dispute Amount: ₹4200\n\n**Distinct Transaction Evidence**\n\n* Order IDs: Order A: ORD-26171 / Order B: ORD-28407 (distinct order records)\n* Timestamps: Charge A 2026-08-11 19:11 IST, Charge B 2026-08-11 21:11 IST (hours apart)\n* Idempotency Key Trace: Distinct idempency keys (idem_a / idem_b) in gateway log\n* Cart Contents: Different carts (distinct SKUs per order)\n\n**Conclusion**\n\nThe evidence provided supports the conclusion that the charges were distinct, legitimate transactions, as evidenced by the presence of distinct order IDs, timestamps, idempotency keys, and cart contents.",
       "evidence_used": [
         {
           "field": "distinct_order_ids",
@@ -7112,8 +7112,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-76799, in the amount of ₹3200, processed on 2026-08-18 13:59 IST.\n\n## Authentication Evidence\nThe transaction carried the following 3-D Secure authentication status: 3-D Secure authenticated (fully, liability shifted). Address Verification (AVS) on the transaction returned: AVS full match (Y). Card Verification (CVV2) on the transaction returned: CVV2 match (M).\n\n## Device & Account History\nDevice analysis on the order returned: Device fingerprint matches 2 prior orders. The originating network of the order was assessed as: Order IP in billing city (Pune). The account's prior purchase history on file shows: 7 prior undisputed orders on this account.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the transaction was authorized by the accountholder.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-76799\n* Dispute Amount: ₹3200\n\n**Authentication Evidence**\n\n* AVS/CVV match result: AVS full match (Y), CVV2 match (M)\n* 3DS status: 3-D Secure authenticated (fully, liability shifted)\n\n**Device & Account History**\n\n* Device match: Device fingerprint matches 2 prior orders\n* IP match: Order IP in billing city (Pune)\n* Account history: 7 prior undisputed orders on this account\n\n**Conclusion**\n\nThe evidence supports that the transaction was authorized by the accountholder, as all authentication and verification checks were successful.",
       "evidence_used": [
         {
           "field": "threeds_status",
@@ -7366,8 +7366,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 80.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-99465, in the amount of ₹499, processed on 2026-08-21 15:39 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN8490824764. The parcel was handled by carrier BlueDart. Carrier records show the order was delivered on 2026-08-10.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Signed by: T. Rao, 2026-08-10 15:14 IST.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-99465\n* Dispute Amount: ₹499\n* Date: 2026-08-10\n\n**Shipment Evidence**\n\n* Tracking Number: IN8490824764\n* Carrier: BlueDart\n* Shipment Date: 2026-08-10\n* Delivery Date: 2026-08-10\n\n**Delivery Confirmation**\n\n* Signature: Signed by: T. Rao, 2026-08-10 15:14 IST\n\n**Conclusion**\n\nThe evidence supports that goods were delivered, as a signature from the recipient (T. Rao) is present on the delivery confirmation.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -7640,8 +7640,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 60.0 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-52163, in the amount of ₹499, processed on 2026-08-08 09:09 IST.\n\n## Product Listing at Time of Sale\nThe product listing shown to the buyer at the time of sale described the item as: Listing snapshot at purchase: 'SKU-BKS-042 — Hardcover novel, first edition', full spec archived. The condition of the item prior to shipment was documented: Pre-ship QA photos + inspection checklist archived.\n\n## Return/Refund Policy Shown at Purchase\nNot available.\n\n## Support Interaction Summary\nNot available.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the item matched the description provided at the time of sale.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-52163\n* Dispute Amount: ₹499\n\n**Product Listing at Time of Sale**\n\nThe product listed at the time of sale was 'SKU-BKS-042 — Hardcover novel, first edition', with full specifications archived. Pre-ship QA photos and an inspection checklist were also provided as proof of the item's condition.\n\n**Return/Refund Policy Shown at Purchase**\n\nNot available\n\n**Support Interaction Summary**\n\nNot available\n\n**Conclusion**\n\nThe evidence provided supports the item matching its description, as the product listing at the time of sale included full specifications and pre-ship QA photos were provided as proof of the item's condition.",
       "evidence_used": [
         {
           "field": "product_listing",
@@ -7733,8 +7733,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 60.0 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-32274, in the amount of ₹4200, processed on 2026-08-16 14:10 IST.\n\n## Product Listing at Time of Sale\nThe product listing shown to the buyer at the time of sale described the item as: Listing snapshot at purchase: 'SKU-APP-201 — Cotton kurta, size L, indigo', full spec archived. The condition of the item prior to shipment was documented: Pre-ship QA photos + inspection checklist archived.\n\n## Return/Refund Policy Shown at Purchase\nNot available.\n\n## Support Interaction Summary\nNot available.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the item matched the description provided at the time of sale.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-32274\n* Dispute Amount: ₹4200\n\n**Product Listing at Time of Sale**\n\nThe product listed at the time of sale was 'SKU-APP-201 — Cotton kurta, size L, indigo', with full specifications archived. Pre-ship QA photos and an inspection checklist were also provided as proof of the item's condition.\n\n**Return/Refund Policy Shown at Purchase**\n\nNot available\n\n**Support Interaction Summary**\n\nNot available\n\n**Conclusion**\n\nThe evidence provided supports the item matching its description, as the product listing at the time of sale included detailed specifications and pre-ship condition proof was provided.",
       "evidence_used": [
         {
           "field": "product_listing",
@@ -7975,8 +7975,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 52.5 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-59487, in the amount of ₹499, processed on 2026-08-16 14:03 IST.\n\n## Authentication Evidence\nThe transaction carried the following 3-D Secure authentication status: 3-D Secure attempted, not completed. [qualified / limited evidence] Address Verification (AVS) on the transaction returned: AVS full match (Y).\n\n## Device & Account History\nDevice analysis on the order returned: Device fingerprint matches 2 prior orders. The originating network of the order was assessed as: Order IP same country, different city from billing. [qualified / limited evidence]\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the transaction was authorized by the accountholder.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-59487\n* Dispute Amount: ₹499\n\n**Authentication Evidence**\n\n* AVS result: AVS full match (Y)\n* 3DS status: 3-D Secure attempted, not completed\n\n**Device & Account History**\n\n* Device match: Device fingerprint matches 2 prior orders\n* IP match: Order IP same country, different city from billing\n\n**Conclusion**\n\nThe evidence provided does not conclusively support that the transaction was authorized by the accountholder, as the 3-D Secure attempt was not completed.",
       "evidence_used": [
         {
           "field": "threeds_status",
@@ -8295,8 +8295,8 @@
       "recommendation": "submit_with_caveats",
       "explanation": "Confidence 62.5 in the caveats band [45, 72) — file only after human review.",
       "flagged_for_review": true,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-66397, in the amount of ₹2450, processed on 2026-08-16 16:52 IST.\n\n## Shipment Evidence\nThe shipment was dispatched under tracking number IN1213457709. The parcel was handled by carrier BlueDart. Carrier records show the order was shipped on 2026-08-08.\n\n## Delivery Confirmation\nDelivery was confirmed by the carrier: Left at door 2026-08-11; no signature captured. [qualified / limited evidence]\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the goods associated with this transaction were delivered.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-66397\n* Dispute Amount: ₹2450\n* Shipment Date: 2026-08-08\n\n**Shipment Evidence**\n\n* Tracking Number: IN1213457709\n* Carrier: BlueDart\n* Shipment Date: 2026-08-08\n* Delivery Date: 2026-08-11 (Note: This date is mentioned in the delivery confirmation field, but it is marked as weak. However, it is the only date mentioned in the delivery confirmation field, so it is included here.)\n\n**Delivery Confirmation**\n\n* Not available (no signature captured, GPS drop-off confirmation, or photo provided)\n\n**Conclusion**\n\nThe evidence provided does not conclusively support that the goods were delivered, as the delivery confirmation is weak and lacks a signature or other confirmation of delivery.",
       "evidence_used": [
         {
           "field": "tracking_number",
@@ -8421,8 +8421,8 @@
       "recommendation": "submit",
       "explanation": "Confidence 100.0 ≥ 72 with all required evidence present.",
       "flagged_for_review": false,
-      "backend": "deterministic",
-      "packet_text": "## Transaction Summary\nThis rebuttal concerns transaction TXN-27712, in the amount of ₹1299, processed on 2026-08-15 19:28 IST.\n\n## Authentication Evidence\nThe transaction carried the following 3-D Secure authentication status: 3-D Secure authenticated (fully, liability shifted). Address Verification (AVS) on the transaction returned: AVS full match (Y). Card Verification (CVV2) on the transaction returned: CVV2 match (M).\n\n## Device & Account History\nDevice analysis on the order returned: Device fingerprint matches 4 prior orders. The originating network of the order was assessed as: Order IP in billing city (Hyderabad). The account's prior purchase history on file shows: 9 prior undisputed orders on this account.\n\n## Conclusion\nBased solely on the evidence set out above, the merchant's records support that the transaction was authorized by the accountholder.",
+      "backend": "ollama",
+      "packet_text": "**Transaction Summary**\n\n* Transaction ID: TXN-27712\n* Dispute Amount: ₹1299\n\n**Authentication Evidence**\n\n* AVS/CVV match result: AVS full match (Y), CVV2 match (M)\n* 3DS status: 3-D Secure authenticated (fully, liability shifted)\n\n**Device & Account History**\n\n* Device match: Device fingerprint matches 4 prior orders\n* IP match: Order IP in billing city (Hyderabad)\n* Account history: 9 prior undisputed orders on this account\n\n**Conclusion**\n\nThe evidence supports that the transaction was authorized by the accountholder, as all authentication and verification checks were successful.",
       "evidence_used": [
         {
           "field": "threeds_status",

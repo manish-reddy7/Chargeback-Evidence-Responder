@@ -119,6 +119,20 @@ def compute_metrics(test_set, output_list):
     fp_cost = fp * fp_unit
     fn_cost = sum(amount[d] for d in fn_cases)
 
+    # R12-adjacent honesty check: is every error a pre-labeled adversarial "hard
+    # case" (data/test_set.json's gt_rationale is written independently of the
+    # scorer), or is some error unexplained by the test set's own design? This
+    # distinguishes "the evidence-only architecture has a known, named blind spot"
+    # from "the scorer got something it shouldn't have wrong" — the two look
+    # identical in a bare confusion matrix but mean very different things.
+    def _is_hard_case(did):
+        rationale = by_id.get(did, {}).get("gt_rationale", "") or ""
+        return rationale.strip().upper().startswith("HARD CASE")
+
+    error_cases = fp_cases + fn_cases
+    hard_case_errors = [d for d in error_cases if _is_hard_case(d)]
+    unexplained_errors = [d for d in error_cases if not _is_hard_case(d)]
+
     return {
         "total_cases": total,
         "punts": punts,
@@ -141,6 +155,8 @@ def compute_metrics(test_set, output_list):
         "false_negative_cost_inr": fn_cost,
         "fp_cases": fp_cases,
         "fn_cases": fn_cases,
+        "hard_case_errors": hard_case_errors,
+        "unexplained_errors": unexplained_errors,
         "borderline_handling": borderline_handling,
         "per_family": per_family,
         "currency": costs.get("currency", "INR"),
@@ -177,6 +193,19 @@ def format_report(m):
       f"   (forgone recoverable revenue)")
     a(f"    -> FN cases: {', '.join(m['fn_cases']) if m['fn_cases'] else 'none'}")
     a("")
+    n_err = len(m["fp_cases"]) + len(m["fn_cases"])
+    n_hard = len(m["hard_case_errors"])
+    n_unexplained = len(m["unexplained_errors"])
+    if n_err:
+        if n_unexplained == 0:
+            a(f"  ERROR-CASE AUDIT : {n_err}/{n_err} errors are pre-labeled adversarial hard")
+            a(f"                     cases (test_set.json gt_rationale, written independently")
+            a(f"                     of the scorer) — 0 unexplained errors.")
+        else:
+            a(f"  ERROR-CASE AUDIT : {n_hard}/{n_err} errors are pre-labeled adversarial hard")
+            a(f"                     cases; {n_unexplained} UNEXPLAINED — investigate:")
+            a(f"                     {', '.join(m['unexplained_errors'])}")
+        a("")
     a("  CONFUSION MATRIX  (rows = recommendation, cols = ground truth)")
     a(f"    {'':22}{'win':>7}{'lose':>7}{'border':>8}{'n/a':>6}")
     for r in ALL_RECS:
