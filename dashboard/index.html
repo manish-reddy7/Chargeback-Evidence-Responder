@@ -18,7 +18,7 @@
     --ink-soft:#4A4C44;
     --ledger-green:#2F4B3C; /* sufficient / submit + primary structure */
     --stamp-red:#8C3A2B;    /* insufficient / do-not-submit */
-    --caution-ochre:#B4863C;/* caveats / medium */
+    --caution-ochre:#7E5E2A;/* caveats / medium (darkened from #B4863C: WCAG AA text contrast on --paper was 2.7:1, now 5.0:1) */
     --slate:#5B6167;        /* punt / neutral */
     --line:#C7C0AF;
     --line-strong:#A9A18C;
@@ -87,8 +87,10 @@
     border:1px solid var(--line-strong);color:var(--ink);padding:4px 6px;border-radius:0;
   }
   .filters input{flex:1;min-width:80px}
-  .filters select:focus,.filters input:focus,.qrow:focus,button:focus,.chip:focus{
+  .filters select:focus,.filters input:focus,.qrow:focus,button:focus,.chip:focus,.cnum:focus{
     outline:2px solid var(--ledger-green);outline-offset:1px}
+  .cnum:focus{outline-offset:4px}
+  .cnum:focus:not(:focus-visible){outline:none}
 
   .qlist{overflow-y:auto;flex:1}
   .qrow{
@@ -281,6 +283,20 @@
     .stamp.animate{animation:none}
     .confbar .fill{transition:none}
   }
+
+  /* ---------- Print: the "case file" theme literally read as one ----------
+     Printing/exporting a single dispute's evidence + packet + audit entry for a
+     paper file is a real ops workflow here, not a novelty — so give it a real
+     stylesheet rather than dumping the whole app chrome onto paper. */
+  @media print{
+    .queue,.evalledger,.methlink,.backbtn,.ovrbtn,.ovrform,footer,.methodology{display:none !important}
+    body.viewing-case .queue{display:none}
+    main{display:block}
+    .detail{padding:0}
+    .casehead{border-bottom-color:#000}
+    .packet{box-shadow:none;border-color:#000;max-width:none}
+    a[href]::after{content:""}
+  }
 </style>
 </head>
 <body>
@@ -432,6 +448,11 @@
     state.sel=id; document.body.classList.add("viewing-case");
     renderQueue(); renderDetail();
     document.getElementById("detail").scrollTop=0;
+    // Move focus into the case (SPA-style route change): on the mobile layout the
+    // queue is hidden entirely once a case is open, so without this a keyboard or
+    // screen-reader user's focus is left on a now-invisible list item.
+    var heading=document.getElementById("caseheading");
+    if(heading) heading.focus();
   }
   function caseById(id){return D.cases.filter(function(c){return c.dispute_id===id;})[0];}
 
@@ -544,7 +565,7 @@
     var sc=stampClass(c.recommendation);
     host.innerHTML =
       '<div class="casehead">'
-        +'<div><h2 class="cnum mono">CASE '+esc(c.dispute_id)+'</h2>'
+        +'<div><h2 class="cnum mono" id="caseheading" tabindex="-1">CASE '+esc(c.dispute_id)+'</h2>'
           +'<div class="facts">'
             +'<span><span class="k">Reason family</span>'+esc(famName(c.family))+'</span>'
             +'<span><span class="k">Reason code</span>'+esc(c.reason_code)+'</span>'
