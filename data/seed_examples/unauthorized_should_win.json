@@ -1,0 +1,57 @@
+{
+  "dispute_id": "DP-0041",
+  "family_expected": "unauthorized",
+  "ground_truth": "should_win",
+  "gt_rationale": "3DS authenticated, AVS/CVV match, known device, and legitimate history — strong authorization evidence.",
+  "dispute": {
+    "dispute_id": "DP-0041",
+    "transaction_id": "TXN-19236",
+    "reason_code": "4837",
+    "amount_inr": 2450,
+    "deadline": "2026-08-16",
+    "status": "pending"
+  },
+  "transaction": {
+    "transaction_id": "TXN-19236",
+    "amount_inr": 2450,
+    "timestamp": "2026-08-09 17:23 IST",
+    "payment_method": "card",
+    "threeds_status": {
+      "value": "3-D Secure authenticated (fully, liability shifted)",
+      "weak": false
+    },
+    "avs_result": {
+      "value": "AVS full match (Y)",
+      "weak": false
+    },
+    "cvv_result": {
+      "value": "CVV2 match (M)",
+      "weak": false
+    }
+  },
+  "order": {
+    "order_id": "ORD-94585",
+    "transaction_id": "TXN-19236",
+    "sku": "SKU-KTC-330",
+    "shipping_address": "Hyderabad, IN"
+  },
+  "customer_history": {
+    "customer_id": "CUST-5397",
+    "account_age_days": 902,
+    "prior_order_count": 1,
+    "device_match": {
+      "value": "Device fingerprint matches 3 prior orders",
+      "weak": false
+    },
+    "ip_match": {
+      "value": "Order IP in billing city (Chennai)",
+      "weak": false
+    },
+    "prior_purchase_history": {
+      "value": "14 prior undisputed orders on this account",
+      "weak": false
+    }
+  },
+  "support_ticket": null,
+  "duplicate_info": null
+}

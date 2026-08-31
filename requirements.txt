@@ -1,0 +1,8 @@
+# Core (required)
+PyYAML>=6.0
+
+# Optional — only needed to enable the REAL Anthropic API backend in the packet
+# generator (set ANTHROPIC_API_KEY in your environment). Without it, the packet
+# generator uses a deterministic template fallback and the pipeline runs fully
+# offline. To enable Claude:  pip install anthropic
+# anthropic>=0.34.0

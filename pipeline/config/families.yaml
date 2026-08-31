@@ -1,0 +1,137 @@
+# families.yaml — Evidence checklists + scoring weights per reason-code family.
+#
+# R3: this file is the single source of truth for the Sufficiency Scorer's
+# checklist and weights. It lives in config (not code) on purpose, so it is
+# visibly inspectable and tunable in the demo.
+#
+# Model:
+#   - Each family lists the evidence fields the deterministic Retriever looks up.
+#   - Field weights WITHIN a family sum to 100. Confidence is a weighted percentage
+#     of evidence strength (present = full weight, weak = weak_multiplier * weight,
+#     missing = 0). weak_multiplier lives in thresholds.yaml.
+#   - `required: true` means the rebuttal is not winnable without that field.
+#     If any required field is missing, the scorer caps confidence at
+#     `required_missing_ceiling` (thresholds.yaml) and records a critical gap.
+#   - `gate.require_any`: at least one field in the list must be present/weak,
+#     otherwise confidence is capped at `require_any_ceiling`. Used for families
+#     (Unauthorized) where no single field is mandatory but *some* authentication
+#     signal is.
+#
+# The classifier maps a raw reason_code string to a family via `reason_codes`.
+# Any code not listed here classifies as UNKNOWN and is punted to a human (never
+# force-fit into a family — see rules.md R20 and the punt-rate honesty rule R10).
+
+families:
+
+  not_received:
+    display_name: "Goods/Service Not Received"
+    description: "Cardholder claims the purchased item or service never arrived."
+    reason_codes: ["13.1", "4855", "C08", "1301", "RG", "UA02"]
+    gate:
+      require_any: []
+    evidence:
+      tracking_number:
+        weight: 25
+        required: true
+        why: "Proves a shipment tied to this order physically exists."
+      delivery_confirmation:
+        weight: 35
+        required: true
+        why: "Carrier signature or confirmation is the decisive proof of delivery."
+      carrier:
+        weight: 10
+        required: false
+        why: "Identifies the carrier of record for the tracking number."
+      shipment_date:
+        weight: 10
+        required: false
+        why: "Shows the item shipped within the expected window."
+      delivery_date:
+        weight: 10
+        required: false
+        why: "Establishes when delivery occurred relative to the dispute date."
+      delivery_photo:
+        weight: 10
+        required: false
+        why: "Corroborates drop-off location; supports the signature evidence."
+
+  defective:
+    display_name: "Not As Described / Defective"
+    description: "Cardholder claims the item was damaged, wrong, or not as described."
+    reason_codes: ["13.3", "4853", "C31", "C32", "1330", "RM"]
+    gate:
+      require_any: []
+    evidence:
+      product_listing:
+        weight: 40
+        required: true
+        why: "The description/spec shown to the buyer is the baseline the item is judged against."
+      return_policy:
+        weight: 20
+        required: false
+        why: "The return/refund policy shown at purchase frames the cardholder's obligations."
+      support_ticket_resolution:
+        weight: 20
+        required: false
+        why: "Shows the merchant engaged and offered a resolution before the dispute."
+      item_condition_proof:
+        weight: 20
+        required: false
+        why: "QA / pre-ship inspection record supporting that the item matched its listing."
+
+  unauthorized:
+    display_name: "Unauthorized Transaction"
+    description: "Cardholder claims they did not authorize or make the purchase."
+    reason_codes: ["10.4", "10.1", "10.2", "10.3", "4837", "4863", "1040", "F24", "UA01"]
+    gate:
+      # No single field is mandatory, but at least one authentication signal must exist.
+      require_any: [threeds_status, avs_result, cvv_result, device_match]
+    evidence:
+      threeds_status:
+        weight: 25
+        required: false
+        why: "A successful 3-D Secure authentication shifts liability to the issuer."
+      avs_result:
+        weight: 20
+        required: false
+        why: "Address Verification match links the order to the cardholder's billing address."
+      cvv_result:
+        weight: 20
+        required: false
+        why: "A CVV match indicates the physical card was present at checkout."
+      device_match:
+        weight: 15
+        required: false
+        why: "The device/fingerprint was used in prior legitimate purchases by this account."
+      ip_match:
+        weight: 10
+        required: false
+        why: "The order IP aligns with the billing region or prior known IPs."
+      prior_purchase_history:
+        weight: 10
+        required: false
+        why: "The account has a legitimate purchase history inconsistent with fraud."
+
+  duplicate:
+    display_name: "Duplicate / Processing Error"
+    description: "Cardholder claims they were charged more than once for one purchase."
+    reason_codes: ["12.6.1", "12.6.2", "4834", "4831", "1261", "P08", "DP"]
+    gate:
+      require_any: []
+    evidence:
+      distinct_order_ids:
+        weight: 40
+        required: true
+        why: "Two different order IDs show the charges are separate, legitimate transactions."
+      distinct_timestamps:
+        weight: 25
+        required: false
+        why: "Meaningfully different timestamps argue against an accidental double-post."
+      idempotency_key_trace:
+        weight: 25
+        required: false
+        why: "Distinct idempotency keys prove the gateway did not replay one request."
+      itemization_match:
+        weight: 10
+        required: false
+        why: "Different line items/carts confirm the two charges were for different goods."

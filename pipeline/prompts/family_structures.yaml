@@ -1,0 +1,78 @@
+# family_structures.yaml — the fixed packet structure per reason-code family.
+#
+# This single structured representation drives BOTH:
+#   (a) the human-readable "PACKET STRUCTURE TO FOLLOW" block injected into the
+#       LLM prompt, and
+#   (b) the deterministic fallback renderer,
+# so the two backends can never drift apart.
+#
+# Section kinds:
+#   summary    -> restates transaction metadata (txn id / amount / date)
+#   evidence   -> renders the listed `fields` (only those that were provided);
+#                 if none were provided, the section states "Not available."
+#   conclusion -> one templated sentence about `claim`, based only on whether the
+#                 family's key evidence is present. Never asserts more than provided.
+#
+# `fields` reference the evidence field names from families.yaml. The packet
+# generator only ever receives present/weak fields (missing fields are filtered
+# out before the prompt is built — the structural anti-fabrication guardrail).
+
+not_received:
+  claim: "the goods associated with this transaction were delivered"
+  key_fields: [tracking_number, delivery_confirmation]
+  sections:
+    - {name: "Transaction Summary", kind: summary,
+       instruction: "Restate transaction ID, amount, date only if provided."}
+    - {name: "Shipment Evidence", kind: evidence,
+       fields: [tracking_number, carrier, shipment_date, delivery_date],
+       instruction: "Tracking number, carrier, shipment/delivery dates."}
+    - {name: "Delivery Confirmation", kind: evidence,
+       fields: [delivery_confirmation, delivery_photo],
+       instruction: "Signature, GPS drop-off confirmation, or photo, if provided. If none provided, state 'Not available.'"}
+    - {name: "Conclusion", kind: conclusion,
+       instruction: "One sentence on whether the evidence supports that goods were delivered, based solely on the sections above."}
+
+defective:
+  claim: "the item matched the description provided at the time of sale"
+  key_fields: [product_listing]
+  sections:
+    - {name: "Transaction Summary", kind: summary,
+       instruction: "Restate transaction ID, amount, date only if provided."}
+    - {name: "Product Listing at Time of Sale", kind: evidence,
+       fields: [product_listing, item_condition_proof],
+       instruction: "Description/spec shown to buyer, and any pre-ship condition proof, if provided."}
+    - {name: "Return/Refund Policy Shown at Purchase", kind: evidence,
+       fields: [return_policy],
+       instruction: "Return/refund policy shown at purchase, if provided."}
+    - {name: "Support Interaction Summary", kind: evidence,
+       fields: [support_ticket_resolution],
+       instruction: "Factual summary of any support ticket resolution provided (do not characterize the customer's tone or motive)."}
+    - {name: "Conclusion", kind: conclusion,
+       instruction: "One sentence on whether the evidence supports the item matched its description, based solely on the sections above."}
+
+unauthorized:
+  claim: "the transaction was authorized by the accountholder"
+  key_fields: [threeds_status, avs_result, cvv_result]
+  sections:
+    - {name: "Transaction Summary", kind: summary,
+       instruction: "Restate transaction ID, amount, date only if provided."}
+    - {name: "Authentication Evidence", kind: evidence,
+       fields: [threeds_status, avs_result, cvv_result],
+       instruction: "AVS/CVV match result, 3DS status, if provided."}
+    - {name: "Device & Account History", kind: evidence,
+       fields: [device_match, ip_match, prior_purchase_history],
+       instruction: "Device/IP match against prior legitimate purchases, account history, if provided."}
+    - {name: "Conclusion", kind: conclusion,
+       instruction: "One sentence on whether the evidence supports the transaction was authorized by the accountholder, based solely on the sections above."}
+
+duplicate:
+  claim: "the charges were distinct, legitimate transactions"
+  key_fields: [distinct_order_ids]
+  sections:
+    - {name: "Transaction Summary", kind: summary,
+       instruction: "Restate transaction ID, amount, date only if provided."}
+    - {name: "Distinct Transaction Evidence", kind: evidence,
+       fields: [distinct_order_ids, distinct_timestamps, idempotency_key_trace, itemization_match],
+       instruction: "Order IDs, timestamps, idempotency key trace, and cart contents showing the charges are distinct, if provided."}
+    - {name: "Conclusion", kind: conclusion,
+       instruction: "One sentence on whether the evidence supports the charges were distinct, legitimate transactions, based solely on the section above."}

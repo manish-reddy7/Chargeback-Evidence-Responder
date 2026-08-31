@@ -1,0 +1,13 @@
+DISPUTE REASON FAMILY: {family_name}
+DISPUTE ID: {dispute_id}
+DISPUTE AMOUNT: {amount}
+TRANSACTION ID: {transaction_id}
+
+EVIDENCE PROVIDED (only use what appears below — nothing else):
+{evidence_block}
+
+PACKET STRUCTURE TO FOLLOW:
+{family_structure}
+
+Write the rebuttal packet now, following the structure exactly and using
+only the evidence provided above.

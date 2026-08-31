@@ -1,0 +1,50 @@
+{
+  "dispute_id": "DP-0059",
+  "family_expected": "duplicate",
+  "ground_truth": "should_win",
+  "gt_rationale": "Two distinct orders, distinct timestamps and idempotency keys, different carts — legitimately separate charges.",
+  "dispute": {
+    "dispute_id": "DP-0059",
+    "transaction_id": "TXN-67912",
+    "reason_code": "12.6.1",
+    "amount_inr": 890,
+    "deadline": "2026-09-09",
+    "status": "pending"
+  },
+  "transaction": {
+    "transaction_id": "TXN-67912",
+    "amount_inr": 890,
+    "timestamp": "2026-08-19 17:12 IST",
+    "payment_method": "card"
+  },
+  "order": {
+    "order_id": "ORD-11543",
+    "transaction_id": "TXN-67912",
+    "sku": "SKU-HOM-560",
+    "shipping_address": "Delhi, IN"
+  },
+  "customer_history": {
+    "customer_id": "CUST-6956",
+    "account_age_days": 828,
+    "prior_order_count": 13
+  },
+  "support_ticket": null,
+  "duplicate_info": {
+    "distinct_order_ids": {
+      "value": "Order A: ORD-24287 / Order B: ORD-61360 (distinct order records)",
+      "weak": false
+    },
+    "distinct_timestamps": {
+      "value": "Charge A 2026-08-13 16:21 IST, Charge B 2026-08-13 20:21 IST (hours apart)",
+      "weak": false
+    },
+    "idempotency_key_trace": {
+      "value": "Distinct idempotency keys (idem_a / idem_b) in gateway log",
+      "weak": false
+    },
+    "itemization_match": {
+      "value": "Different carts (distinct SKUs per order)",
+      "weak": false
+    }
+  }
+}

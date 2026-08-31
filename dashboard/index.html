@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chargeback Evidence Responder — Case File</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light;
+    /* Evidence-locker palette (design.md §1) */
+    --paper:#EDEAE2;
+    --paper-2:#E4E0D5;      /* row hover / panel tint */
+    --paper-3:#F6F4EE;      /* document / packet page */
+    --ink:#22241F;
+    --ink-soft:#4A4C44;
+    --ledger-green:#2F4B3C; /* sufficient / submit + primary structure */
+    --stamp-red:#8C3A2B;    /* insufficient / do-not-submit */
+    --caution-ochre:#B4863C;/* caveats / medium */
+    --slate:#5B6167;        /* punt / neutral */
+    --line:#C7C0AF;
+    --line-strong:#A9A18C;
+    --display:"Roboto Slab", Georgia, "Times New Roman", serif;
+    --body:"IBM Plex Sans", system-ui, -apple-system, Segoe UI, sans-serif;
+    --mono:"IBM Plex Mono", "Courier New", ui-monospace, monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:15px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--ledger-green)}
+  h1,h2,h3{font-family:var(--display);font-weight:700;margin:0}
+  .mono{font-family:var(--mono)}
+
+  /* ---------- Masthead ---------- */
+  header.masthead{
+    border-bottom:2px solid var(--ink);
+    padding:18px 26px 14px;
+    display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;
+  }
+  .brand h1{font-size:22px;letter-spacing:.02em;text-transform:uppercase}
+  .brand .tag{font-size:12.5px;color:var(--ink-soft);margin-top:3px;max-width:52ch}
+  .brand .filecode{font-family:var(--mono);font-size:11px;color:var(--ink-soft);letter-spacing:.08em}
+
+  /* Evaluation ledger — the honest-eval thesis, kept quiet + tabular */
+  .evalledger{
+    border:1px solid var(--line-strong);
+    background:var(--paper-3);
+    padding:10px 14px;
+    min-width:300px;
+  }
+  .evalledger .lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--line);
+    padding-bottom:4px;margin-bottom:6px;display:flex;justify-content:space-between}
+  .evalgrid{display:grid;grid-template-columns:repeat(3,auto);gap:2px 20px}
+  .evalgrid div{font-family:var(--mono);font-size:12px;white-space:nowrap}
+  .evalgrid .k{color:var(--ink-soft);font-size:10px;display:block;letter-spacing:.04em}
+  .evalgrid .v{font-weight:500;font-size:15px}
+  .evalledger .costs{margin-top:7px;padding-top:6px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:11px;color:var(--ink-soft);display:flex;
+    justify-content:space-between;gap:14px}
+  .evalledger .costs b{color:var(--ink);font-weight:500}
+  .methlink{background:none;border:none;color:var(--ledger-green);font-family:var(--mono);
+    font-size:10px;cursor:pointer;text-decoration:underline;padding:0;letter-spacing:.04em}
+
+  /* ---------- Layout ---------- */
+  main{display:grid;grid-template-columns:390px 1fr;min-height:calc(100vh - 74px)}
+  .queue{border-right:2px solid var(--ink);display:flex;flex-direction:column;min-width:0}
+  .detail{padding:22px 30px 60px;min-width:0;overflow-x:hidden}
+
+  /* ---------- Queue ---------- */
+  .queuehead{padding:12px 16px 10px;border-bottom:1px solid var(--line-strong);position:sticky;top:0;background:var(--paper);z-index:2}
+  .queuehead .row1{display:flex;justify-content:space-between;align-items:baseline}
+  .queuehead h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+  .queuehead .count{font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+  .filters{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
+  .filters select,.filters input{
+    font-family:var(--mono);font-size:11px;background:var(--paper-3);
+    border:1px solid var(--line-strong);color:var(--ink);padding:4px 6px;border-radius:0;
+  }
+  .filters input{flex:1;min-width:80px}
+  .filters select:focus,.filters input:focus,.qrow:focus,button:focus,.chip:focus{
+    outline:2px solid var(--ledger-green);outline-offset:1px}
+
+  .qlist{overflow-y:auto;flex:1}
+  .qrow{
+    display:grid;grid-template-columns:1fr auto;gap:2px 10px;
+    padding:11px 16px;border-bottom:1px solid var(--line);
+    cursor:pointer;background:none;border-left:4px solid transparent;
+    width:100%;text-align:left;font-family:var(--body);color:inherit;
+  }
+  .qrow:hover{background:var(--paper-2)}
+  .qrow.sel{background:var(--paper-2);border-left-color:var(--ledger-green)}
+  .qrow .id{font-family:var(--mono);font-size:13px;font-weight:500}
+  .qrow .fam{font-size:12.5px;color:var(--ink-soft);grid-column:1;}
+  .qrow .amt{font-family:var(--mono);font-size:13px;text-align:right}
+  .qrow .meta{grid-column:2;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+  .qrow .dl{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft)}
+  .cdot{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;
+    letter-spacing:.02em;text-transform:uppercase}
+  .cdot::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--slate);
+    border:1px solid rgba(0,0,0,.25)}
+  .cdot.high::before{background:var(--ledger-green)}
+  .cdot.med::before{background:var(--caution-ochre)}
+  .cdot.low::before{background:var(--stamp-red)}
+  .cdot.na::before{background:var(--slate)}
+  .flagtick{font-family:var(--mono);font-size:9.5px;color:var(--caution-ochre);letter-spacing:.04em}
+
+  /* ---------- Case detail ---------- */
+  .emptystate{color:var(--ink-soft);font-size:14px;max-width:46ch;margin-top:40px}
+  .emptystate h2{font-family:var(--display);font-size:18px;margin-bottom:8px;color:var(--ink)}
+
+  .casehead{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;
+    border-bottom:2px solid var(--ink);padding-bottom:16px;position:relative}
+  .casehead .cnum{font-size:26px;letter-spacing:.01em}
+  .casehead .facts{margin-top:8px;display:flex;gap:26px;flex-wrap:wrap;font-family:var(--mono);font-size:12.5px}
+  .casehead .facts .k{color:var(--ink-soft);font-size:10px;letter-spacing:.06em;text-transform:uppercase;display:block}
+  .truthchip{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:10.5px;
+    padding:2px 8px;border:1px solid var(--line-strong);color:var(--ink-soft)}
+  .truthchip.ok{border-color:var(--ledger-green);color:var(--ledger-green)}
+  .truthchip.miss{border-color:var(--stamp-red);color:var(--stamp-red)}
+
+  /* The STAMP — the one signature flourish (design.md §1 "Signature element") */
+  .stampwrap{flex-shrink:0;width:210px;height:104px;position:relative;display:flex;align-items:center;justify-content:center}
+  .stamp{
+    --sc:var(--slate);
+    border:3px double var(--sc);color:var(--sc);
+    font-family:var(--display);font-weight:700;text-transform:uppercase;
+    letter-spacing:.05em;text-align:center;line-height:1.05;
+    padding:9px 16px;transform:rotate(-6deg);
+    filter:url(#roughen);opacity:.92;
+    background:rgba(255,255,255,.16);
+  }
+  .stamp .big{font-size:23px;display:block}
+  .stamp .sub{font-family:var(--mono);font-weight:500;font-size:9px;letter-spacing:.14em;
+    display:block;margin-top:3px;opacity:.9}
+  .stamp.submit{--sc:var(--ledger-green)}
+  .stamp.caveats{--sc:var(--caution-ochre)}
+  .stamp.dns{--sc:var(--stamp-red)}
+  .stamp.punt{--sc:var(--slate)}
+  @keyframes stampdown{
+    0%{transform:rotate(-6deg) scale(2.4);opacity:0}
+    60%{transform:rotate(-6deg) scale(.94);opacity:1}
+    80%{transform:rotate(-6deg) scale(1.04)}
+    100%{transform:rotate(-6deg) scale(1);opacity:.92}
+  }
+  .stamp.animate{animation:stampdown .42s cubic-bezier(.2,.8,.3,1.2)}
+
+  section.block{margin-top:26px}
+  section.block > h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-soft);border-bottom:1px solid var(--line-strong);padding-bottom:6px;margin-bottom:12px;
+    display:flex;justify-content:space-between;align-items:baseline}
+  section.block > h3 .aux{font-family:var(--mono);font-size:10px;letter-spacing:.04em}
+
+  /* Evidence checklist */
+  .checklist{list-style:none;margin:0;padding:0}
+  .chkitem{display:grid;grid-template-columns:22px 1fr auto;gap:4px 10px;padding:7px 0;border-bottom:1px dotted var(--line)}
+  .chkitem .glyph{font-family:var(--mono);font-weight:700;text-align:center;font-size:15px;line-height:1.4}
+  .chkitem.present .glyph{color:var(--ledger-green)}
+  .chkitem.weak .glyph{color:var(--caution-ochre)}
+  .chkitem.missing .glyph{color:var(--stamp-red)}
+  .chkitem .name{font-size:13.5px}
+  .chkitem .name .req{font-family:var(--mono);font-size:9.5px;color:var(--stamp-red);
+    border:1px solid var(--stamp-red);padding:0 4px;margin-left:7px;letter-spacing:.05em;vertical-align:1px}
+  .chkitem .why{font-size:12px;color:var(--ink-soft);margin-top:2px}
+  .chkitem .val{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);margin-top:3px;
+    word-break:break-word}
+  .chkitem .status{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;text-align:right;white-space:nowrap}
+  .chkitem.present .status{color:var(--ledger-green)}
+  .chkitem.weak .status{color:var(--caution-ochre)}
+  .chkitem.missing .status{color:var(--stamp-red)}
+
+  /* Confidence bar */
+  .confbar-wrap{margin-top:16px}
+  .confbar-top{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:12px}
+  .confbar-top .pct{font-size:19px;font-weight:500}
+  .confbar{height:16px;background:var(--paper-3);border:1px solid var(--line-strong);margin-top:5px;position:relative;overflow:hidden}
+  .confbar .fill{height:100%;background:var(--slate);transition:width .5s ease}
+  .confbar .fill.high{background:var(--ledger-green)}
+  .confbar .fill.med{background:var(--caution-ochre)}
+  .confbar .fill.low{background:var(--stamp-red)}
+  .confbar .ticks{position:absolute;inset:0;pointer-events:none}
+  .confbar .tick{position:absolute;top:0;bottom:0;border-left:1px dashed rgba(34,36,31,.35)}
+  .threshnote{font-family:var(--mono);font-size:10px;color:var(--ink-soft);margin-top:5px}
+
+  /* Callouts */
+  .callout{border-left:4px solid var(--line-strong);background:var(--paper-3);padding:10px 14px;margin-top:14px;font-size:13px}
+  .callout.gate{border-left-color:var(--stamp-red)}
+  .callout.review{border-left-color:var(--caution-ochre)}
+  .callout h4{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin:0 0 5px;color:var(--ink-soft)}
+  .callout ul{margin:5px 0 0;padding-left:18px}
+  .callout li{margin:3px 0}
+
+  /* Packet viewer — reads like a document */
+  .packet{background:var(--paper-3);border:1px solid var(--line-strong);
+    box-shadow:2px 3px 0 rgba(34,36,31,.08);padding:30px 34px;margin-top:6px;max-width:70ch}
+  .packet .phead{font-family:var(--mono);font-size:10px;color:var(--ink-soft);letter-spacing:.06em;
+    border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:16px;display:flex;justify-content:space-between}
+  .packet h4{font-family:var(--display);font-size:13px;letter-spacing:.05em;text-transform:uppercase;
+    margin:18px 0 6px;color:var(--ledger-green)}
+  .packet h4:first-of-type{margin-top:0}
+  .packet p{margin:0 0 4px;font-size:14px;line-height:1.6}
+  .packet .sig{margin-top:22px;padding-top:12px;border-top:1px dashed var(--line-strong);
+    font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+  .wouldhelp{list-style:none;padding:0;margin:8px 0 0}
+  .wouldhelp li{padding:8px 0;border-bottom:1px dotted var(--line);font-size:13px}
+  .wouldhelp .f{font-family:var(--mono);font-weight:500}
+  .wouldhelp .tag{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;
+    padding:0 5px;border:1px solid var(--line-strong);margin-left:8px;color:var(--ink-soft)}
+  .wouldhelp .tag.req{color:var(--stamp-red);border-color:var(--stamp-red)}
+
+  /* Audit trail — vertical ledger, stacks downward */
+  .ledger{border-left:2px solid var(--ink);margin-left:6px;padding-left:0}
+  .lentry{position:relative;padding:10px 0 10px 22px;border-bottom:1px dotted var(--line)}
+  .lentry::before{content:"";position:absolute;left:-7px;top:15px;width:10px;height:10px;
+    background:var(--paper);border:2px solid var(--ink)}
+  .lentry.override::before{background:var(--caution-ochre)}
+  .lentry .ts{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft)}
+  .lentry .headline{font-family:var(--mono);font-size:12.5px;margin-top:2px}
+  .lentry .detailrow{font-size:12px;color:var(--ink-soft);margin-top:3px}
+  .lentry .hash{font-family:var(--mono);font-size:10px;color:var(--ink-soft);word-break:break-all}
+  .badge{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;padding:1px 6px;border:1px solid currentColor}
+  .badge.dec{color:var(--ledger-green)}
+  .badge.ovr{color:var(--caution-ochre)}
+
+  /* Override control */
+  .ovrbtn{font-family:var(--mono);font-size:11px;letter-spacing:.04em;background:var(--paper);
+    border:1px solid var(--ink);color:var(--ink);padding:6px 12px;cursor:pointer}
+  .ovrbtn:hover{background:var(--ink);color:var(--paper)}
+  .ovrform{margin-top:12px;border:1px solid var(--line-strong);background:var(--paper-3);padding:14px;display:none}
+  .ovrform.open{display:block}
+  .ovrform label{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);display:block;margin-bottom:4px}
+  .ovrform select,.ovrform textarea{width:100%;font-family:var(--body);font-size:13px;
+    border:1px solid var(--line-strong);background:var(--paper);padding:6px;margin-bottom:10px}
+  .ovrform textarea{min-height:52px;resize:vertical}
+  .ovrform .actions{display:flex;gap:8px}
+
+  /* Methodology dialog */
+  .methodology{position:fixed;inset:0;background:rgba(34,36,31,.55);display:none;z-index:20;
+    align-items:center;justify-content:center;padding:24px}
+  .methodology.open{display:flex}
+  .methcard{background:var(--paper);max-width:620px;width:100%;max-height:86vh;overflow-y:auto;
+    border:2px solid var(--ink);padding:26px 30px}
+  .methcard h2{font-size:18px;text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px}
+  .methcard h4{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ledger-green);margin:18px 0 5px}
+  .methcard p{font-size:13.5px;margin:0 0 8px}
+  .methcard .close{float:right;font-family:var(--mono);font-size:12px;background:none;border:1px solid var(--ink);cursor:pointer;padding:4px 10px}
+  .methcard code{font-family:var(--mono);font-size:12px;background:var(--paper-3);padding:1px 4px;border:1px solid var(--line)}
+  .cmx{width:100%;border-collapse:collapse;margin-top:6px;font-family:var(--mono);font-size:11.5px}
+  .cmx th,.cmx td{border:1px solid var(--line-strong);padding:4px 8px;text-align:center}
+  .cmx th{background:var(--paper-3);font-weight:500}
+  .cmx td.rowlbl{text-align:left;color:var(--ink-soft)}
+
+  footer{border-top:1px solid var(--line-strong);padding:14px 30px;font-size:11.5px;color:var(--ink-soft);
+    font-family:var(--mono);letter-spacing:.02em}
+
+  /* ---------- Responsive: single-column floor ---------- */
+  .backbtn{display:none}
+  @media (max-width:820px){
+    main{grid-template-columns:1fr}
+    .queue{border-right:none;border-bottom:2px solid var(--ink)}
+    .qlist{max-height:46vh}
+    body.viewing-case .queue{display:none}
+    body.viewing-case .backbtn{display:inline-flex}
+    body:not(.viewing-case) .detail{display:none}
+    .backbtn{margin-bottom:14px;font-family:var(--mono);font-size:12px;background:none;
+      border:1px solid var(--ink);padding:6px 12px;cursor:pointer;align-items:center;gap:6px}
+    .casehead{flex-direction:column-reverse;align-items:flex-start}
+    .stampwrap{width:100%;justify-content:flex-start}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .stamp.animate{animation:none}
+    .confbar .fill{transition:none}
+  }
+</style>
+</head>
+<body>
+<!-- SVG filter that gives the stamp a slightly rough, inked edge -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="roughen">
+    <feTurbulence type="fractalNoise" baseFrequency="0.03 0.05" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<header class="masthead">
+  <div class="brand">
+    <div class="filecode" id="filecode">FILE&nbsp;·&nbsp;RISK-OPS&nbsp;·&nbsp;CHARGEBACK REBUTTAL DESK</div>
+    <h1>Chargeback Evidence Responder</h1>
+    <div class="tag">Decides whether a merchant can defensibly fight a dispute — and refuses to draft a rebuttal when the evidence isn't there. Every claim traces to a retrieved field; nothing is fabricated.</div>
+  </div>
+  <div class="evalledger" id="evalledger"><!-- filled by JS --></div>
+</header>
+
+<main>
+  <nav class="queue" aria-label="Dispute queue">
+    <div class="queuehead">
+      <div class="row1"><h2>Dispute Queue</h2><span class="count" id="qcount"></span></div>
+      <div class="filters">
+        <select id="fRec" aria-label="Filter by recommendation">
+          <option value="all">All verdicts</option>
+          <option value="submit">Submit</option>
+          <option value="submit_with_caveats">Submit w/ caveats</option>
+          <option value="do_not_submit">Do not submit</option>
+          <option value="punt">Punt (human triage)</option>
+          <option value="flagged">Flagged for review</option>
+        </select>
+        <select id="fFam" aria-label="Filter by family">
+          <option value="all">All families</option>
+        </select>
+        <input id="fSearch" placeholder="search id / code" aria-label="Search by dispute id or reason code">
+      </div>
+    </div>
+    <div class="qlist" id="qlist" role="list"></div>
+  </nav>
+
+  <section class="detail" id="detail" aria-live="polite">
+    <button class="backbtn" id="backbtn">&larr; Queue</button>
+    <div id="detailbody"></div>
+  </section>
+</main>
+
+<footer id="footer"></footer>
+
+<!-- Methodology dialog -->
+<div class="methodology" id="methModal" role="dialog" aria-modal="true" aria-label="Methodology">
+  <div class="methcard" id="methcard"></div>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  "use strict";
+  var D = window.DASHBOARD_DATA;
+  if(!D){document.getElementById("detailbody").innerHTML="<p>data.js not found. Run <code>python3 dashboard/build_dashboard_data.py</code>.</p>";return;}
+
+  var TH = D.thresholds.recommendation;      // submit_min, caveats_min
+  var SUBMIT_MIN = TH.submit_min, CAVEATS_MIN = TH.caveats_min;
+  var FAM = D.families;
+  var state = {sel:null, rec:"all", fam:"all", q:""};
+
+  // ---------- helpers ----------
+  function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+  function famName(k){return k && FAM[k] ? FAM[k].display_name : "Unknown reason code";}
+  function inr(n){return n==null?"—":"₹"+Number(n).toLocaleString("en-IN");}
+  function band(conf){ if(conf==null) return "na";
+    if(conf>=SUBMIT_MIN) return "high"; if(conf>=CAVEATS_MIN) return "med"; return "low";}
+  function recLabel(r){return {submit:"Submit",submit_with_caveats:"Submit with caveats",
+    do_not_submit:"Do not submit",punt:"Punt — human triage"}[r]||r;}
+  function stampClass(r){return {submit:"submit",submit_with_caveats:"caveats",
+    do_not_submit:"dns",punt:"punt"}[r]||"punt";}
+  function stampBig(r){return {submit:"SUBMIT",submit_with_caveats:"CAVEATS",
+    do_not_submit:"DO NOT<br>SUBMIT",punt:"PUNT"}[r]||"—";}
+  function pct(x){return (x*100).toFixed(1)+"%";}
+
+  // ---------- evaluation ledger (the thesis, up top) ----------
+  function renderEval(){
+    var m=D.metrics, cur=m.currency;
+    var el=document.getElementById("evalledger");
+    el.innerHTML =
+      '<div class="lbl"><span>Evaluation · frozen held-out set ('+m.total_cases+' cases)</span>'
+      +'<button class="methlink" id="methBtn">methodology ▸</button></div>'
+      +'<div class="evalgrid">'
+        +'<div><span class="k">Precision</span><span class="v">'+pct(m.precision)+'</span></div>'
+        +'<div><span class="k">Recall</span><span class="v">'+pct(m.recall)+'</span></div>'
+        +'<div><span class="k">F1</span><span class="v">'+pct(m.f1)+'</span></div>'
+        +'<div><span class="k">Punt rate</span><span class="v">'+pct(m.punt_rate)+'</span></div>'
+        +'<div><span class="k">Coverage</span><span class="v">'+pct(m.coverage)+'</span></div>'
+        +'<div><span class="k">Evaluable</span><span class="v">'+m.binary_evaluable+'</span></div>'
+      +'</div>'
+      +'<div class="costs">'
+        +'<span>False-positive cost: <b>'+cur+' '+m.false_positive_cost_inr.toLocaleString("en-IN")+'</b> ('+m.counts.fp+' FP)</span>'
+        +'<span>Missed-recovery cost: <b>'+cur+' '+m.false_negative_cost_inr.toLocaleString("en-IN")+'</b> ('+m.counts.fn+' FN)</span>'
+      +'</div>';
+    document.getElementById("methBtn").addEventListener("click",openMeth);
+  }
+
+  // ---------- queue ----------
+  function famOptions(){
+    var sel=document.getElementById("fFam");
+    Object.keys(FAM).forEach(function(k){
+      var o=document.createElement("option");o.value=k;o.textContent=FAM[k].display_name;sel.appendChild(o);});
+  }
+  function filtered(){
+    return D.cases.filter(function(c){
+      if(state.rec==="flagged"){ if(!c.flagged_for_review) return false; }
+      else if(state.rec!=="all" && c.recommendation!==state.rec) return false;
+      if(state.fam!=="all" && c.family!==state.fam) return false;
+      if(state.q){
+        var q=state.q.toLowerCase();
+        if((c.dispute_id||"").toLowerCase().indexOf(q)<0 &&
+           (String(c.reason_code)||"").toLowerCase().indexOf(q)<0) return false;
+      }
+      return true;
+    });
+  }
+  function renderQueue(){
+    var list=filtered();
+    document.getElementById("qcount").textContent=list.length+" / "+D.cases.length;
+    var html=list.map(function(c){
+      var b=band(c.confidence);
+      var blabel={high:"high",med:"medium",low:"low",na:"n/a"}[b];
+      var conf=c.confidence==null?"n/a":c.confidence+"%";
+      return '<button class="qrow'+(c.dispute_id===state.sel?' sel':'')+'" role="listitem" data-id="'+esc(c.dispute_id)+'">'
+        +'<span class="id">'+esc(c.dispute_id)+'</span>'
+        +'<span class="amt">'+inr(c.amount_inr)+'</span>'
+        +'<span class="fam">'+esc(famName(c.family))+'</span>'
+        +'<span class="meta">'
+          +'<span class="cdot '+b+'">'+conf+' · '+blabel+'</span>'
+          +'<span class="dl">'+ (c.flagged_for_review?'<span class="flagtick">⚑ review · </span>':'') + 'due '+esc(c.deadline||"—")+'</span>'
+        +'</span>'
+      +'</button>';
+    }).join("");
+    document.getElementById("qlist").innerHTML=html || '<div style="padding:20px;color:var(--ink-soft);font-size:13px">No cases match this filter.</div>';
+    Array.prototype.forEach.call(document.querySelectorAll(".qrow"),function(r){
+      r.addEventListener("click",function(){select(r.getAttribute("data-id"));});
+    });
+  }
+
+  // ---------- case detail ----------
+  function select(id){
+    state.sel=id; document.body.classList.add("viewing-case");
+    renderQueue(); renderDetail();
+    document.getElementById("detail").scrollTop=0;
+  }
+  function caseById(id){return D.cases.filter(function(c){return c.dispute_id===id;})[0];}
+
+  function checklist(c){
+    if(c.is_punt){
+      return '<div class="callout gate"><h4>Not classified</h4><p>Reason code <b class="mono">'
+        +esc(c.reason_code)+'</b> is not mapped to a known dispute family, so no evidence checklist applies. '
+        +'Routed to a human for manual triage rather than force-fitting a family (an honest punt, not a guess).</p></div>';
+    }
+    var pf=c.score.per_field, order=Object.keys(FAM[c.family].fields);
+    var items=order.map(function(f){
+      var d=pf[f]||{status:"missing"};
+      var st=d.status, glyph=st==="present"?"✓":st==="weak"?"~":"✗";
+      var stw=st==="present"?"present · strong":st==="weak"?"present · weak":"missing";
+      var req=d.required?'<span class="req">required</span>':'';
+      var why = st==="missing" ? '<div class="why">'+esc(d.why||FAM[c.family].fields[f].why)+'</div>' : '';
+      var val = (st!=="missing" && d.value)?'<div class="val">'+esc(d.value)+'</div>':'';
+      return '<li class="chkitem '+st+'"><span class="glyph">'+glyph+'</span>'
+        +'<span class="name"><span>'+esc(f.replace(/_/g," "))+'</span>'+req+why+val+'</span>'
+        +'<span class="status">'+stw+'</span></li>';
+    }).join("");
+    return '<ul class="checklist">'+items+'</ul>'+confbar(c);
+  }
+
+  function confbar(c){
+    var conf=c.confidence==null?0:c.confidence, b=band(c.confidence);
+    return '<div class="confbar-wrap"><div class="confbar-top">'
+      +'<span>Evidence sufficiency</span><span class="pct">'+(c.confidence==null?"n/a":c.confidence+"%")+'</span></div>'
+      +'<div class="confbar"><div class="fill '+b+'" style="width:'+conf+'%"></div>'
+        +'<div class="ticks"><span class="tick" style="left:'+CAVEATS_MIN+'%"></span>'
+        +'<span class="tick" style="left:'+SUBMIT_MIN+'%"></span></div></div>'
+      +'<div class="threshnote">caveats ≥ '+CAVEATS_MIN+'  ·  submit ≥ '+SUBMIT_MIN+'  (thresholds are config, tunable)</div></div>';
+  }
+
+  function gates(c){
+    var out="";
+    var gr=c.score&&c.score.gate_reasons||[];
+    if(gr.length) out+='<div class="callout gate"><h4>Gate applied</h4><ul>'
+      +gr.map(function(g){return '<li>'+esc(g)+'</li>';}).join("")+'</ul></div>';
+    if(c.validation_warnings&&c.validation_warnings.length)
+      out+='<div class="callout review"><h4>Flagged — packet needs human verification</h4><ul>'
+        +c.validation_warnings.map(function(w){return '<li>'+esc(w)+'</li>';}).join("")+'</ul></div>';
+    else if(c.recommendation==="submit_with_caveats")
+      out+='<div class="callout review"><h4>Human review before filing</h4><p>'+esc(c.explanation)+'</p></div>';
+    return out;
+  }
+
+  function packetView(c){
+    if(c.packet_text){
+      var body=c.packet_text.split(/\n/).map(function(ln){
+        ln=ln.trim(); if(!ln) return "";
+        if(ln.indexOf("## ")===0) return "<h4>"+esc(ln.slice(3))+"</h4>";
+        return "<p>"+esc(ln)+"</p>";
+      }).join("");
+      return '<div class="packet"><div class="phead"><span>REBUTTAL PACKET · '+esc(c.dispute_id)+'</span>'
+        +'<span>drafted · '+esc(c.backend)+'</span></div>'+body
+        +'<div class="sig">Prepared for human sign-off. This system does not file disputes — '
+        +'a reviewer submits the packet to the network. (rules.md R5)</div></div>';
+    }
+    // do_not_submit / punt: no packet is drafted — explain instead
+    var wh=(c.what_would_help||[]).map(function(x){
+      return '<li><span class="f">'+esc(x.field.replace(/_/g," "))+'</span>'
+        +'<span class="tag'+(x.required?" req":"")+'">'+(x.required?"required":"supporting")+'</span>'
+        +'<div class="why" style="margin-top:3px">'+esc(x.why)+'</div></li>';
+    }).join("");
+    return '<div class="callout gate"><h4>No packet drafted</h4><p>'+esc(c.explanation).replace(/\n/g,"<br>")+'</p></div>'
+      +(wh?'<h3 style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-top:18px">What would change this</h3><ul class="wouldhelp">'+wh+'</ul>':'');
+  }
+
+  function auditView(c){
+    var entries=(c.audit||[]).map(function(e){
+      if(e.entry_type==="override"){
+        return '<div class="lentry override"><div class="ts">'+esc(e.ts)+' · <span class="badge ovr">override</span></div>'
+          +'<div class="headline">'+esc(e.original_recommendation)+' → <b>'+esc(e.override_recommendation)+'</b></div>'
+          +'<div class="detailrow">by '+esc(e.actor)+(e.note?' — '+esc(e.note):'')+'</div></div>';
+      }
+      return '<div class="lentry"><div class="ts">'+esc(e.ts)+' · <span class="badge dec">decision</span></div>'
+        +'<div class="headline">'+esc(recLabel(e.recommendation))+(e.confidence!=null?' · conf '+e.confidence:'')+'</div>'
+        +'<div class="detailrow">evidence chain: '+(e.evidence_chain?e.evidence_chain.length:0)+' field(s)'
+          +(e.packet_drafted?'':' · no packet drafted')
+          +(e.human_review_required?' · flagged for review':'')+'</div>'
+        +(e.packet_sha256?'<div class="hash">packet sha256 · '+esc(e.packet_sha256.slice(0,32))+'…</div>':'')
+      +'</div>';
+    }).join("");
+    return '<div class="ledger">'+(entries||'<div class="lentry"><div class="detailrow">No audit entries.</div></div>')+'</div>'
+      +'<button class="ovrbtn" id="ovrBtn" style="margin-top:14px">Override recommendation</button>'
+      +'<div class="ovrform" id="ovrForm">'
+        +'<label for="ovrRec">New recommendation</label>'
+        +'<select id="ovrRec"><option value="submit">Submit</option>'
+          +'<option value="submit_with_caveats">Submit with caveats</option>'
+          +'<option value="do_not_submit">Do not submit</option></select>'
+        +'<label for="ovrNote">Reason (recorded in the audit trail)</label>'
+        +'<textarea id="ovrNote" placeholder="e.g. Withheld pending stronger delivery confirmation."></textarea>'
+        +'<div class="actions"><button class="ovrbtn" id="ovrSave">Record override</button>'
+          +'<button class="ovrbtn" id="ovrCancel">Cancel</button></div>'
+      +'</div>';
+  }
+
+  function truthChip(c){
+    if(c.decision_matches_truth===null||c.ground_truth==null) return "";
+    var cls=c.decision_matches_truth?"ok":"miss";
+    var txt=(c.decision_matches_truth?"✓ matches":"✗ diverges from")+" ground truth ("+esc(c.ground_truth)+")";
+    return '<span class="truthchip '+cls+'" title="'+esc(c.gt_rationale||"")+'">'+txt+'</span>';
+  }
+
+  function renderDetail(){
+    var c=caseById(state.sel);
+    var host=document.getElementById("detailbody");
+    if(!c){host.innerHTML="";return;}
+    var sc=stampClass(c.recommendation);
+    host.innerHTML =
+      '<div class="casehead">'
+        +'<div><h2 class="cnum mono">CASE '+esc(c.dispute_id)+'</h2>'
+          +'<div class="facts">'
+            +'<span><span class="k">Reason family</span>'+esc(famName(c.family))+'</span>'
+            +'<span><span class="k">Reason code</span>'+esc(c.reason_code)+'</span>'
+            +'<span><span class="k">Amount</span>'+inr(c.amount_inr)+'</span>'
+            +'<span><span class="k">Deadline</span>'+esc(c.deadline||"—")+'</span>'
+          +'</div>'+truthChip(c)+'</div>'
+        +'<div class="stampwrap"><div class="stamp animate '+sc+'">'
+          +'<span class="big">'+stampBig(c.recommendation)+'</span>'
+          +'<span class="sub">'+(c.confidence==null?"unclassified":"conf "+c.confidence)+'</span></div></div>'
+      +'</div>'
+      +'<section class="block"><h3>Evidence checklist<span class="aux">'+esc(famName(c.family))+'</span></h3>'+checklist(c)+gates(c)+'</section>'
+      +'<section class="block"><h3>'+(c.packet_text?'Generated packet':'Recommendation rationale')+'</h3>'+packetView(c)+'</section>'
+      +'<section class="block"><h3>Audit trail<span class="aux">append-only</span></h3>'+auditView(c)+'</section>';
+    wireOverride(c);
+  }
+
+  // ---------- override (demonstrates R17 capture, session-only) ----------
+  function wireOverride(c){
+    var btn=document.getElementById("ovrBtn"), form=document.getElementById("ovrForm");
+    if(!btn) return;
+    btn.addEventListener("click",function(){form.classList.toggle("open");});
+    document.getElementById("ovrCancel").addEventListener("click",function(){form.classList.remove("open");});
+    document.getElementById("ovrSave").addEventListener("click",function(){
+      var newRec=document.getElementById("ovrRec").value;
+      var note=document.getElementById("ovrNote").value.trim();
+      c.audit=(c.audit||[]).concat([{
+        entry_type:"override", ts:new Date().toISOString().replace(/\.\d+Z$/,"+00:00"),
+        dispute_id:c.dispute_id, original_recommendation:c.recommendation,
+        override_recommendation:newRec, actor:"risk_reviewer:you",
+        note:note||"(no note)"
+      }]);
+      renderDetail();
+    });
+  }
+
+  // ---------- methodology ----------
+  function openMeth(){
+    var m=D.metrics, cm=m.confusion, cur=m.currency;
+    function row(r,lbl){var x=cm[r]||{};return '<tr><td class="rowlbl">'+lbl+'</td><td>'+(x.should_win||0)
+      +'</td><td>'+(x.should_lose||0)+'</td><td>'+(x.borderline||0)+'</td><td>'+(x["n/a"]||0)+'</td></tr>';}
+    document.getElementById("methcard").innerHTML=
+      '<button class="close" id="methClose">close ✕</button>'
+      +'<h2>Methodology</h2>'
+      +'<p>The pipeline is deterministic except for one boxed-in step. A reason code is mapped to one of four '
+      +'families, evidence fields are looked up and scored against a config-driven checklist, and only then does a '
+      +'single constrained LLM call draft the rebuttal prose — from the retrieved fields only. Missing fields are '
+      +'filtered out before the model sees anything, so it cannot fill a gap.</p>'
+      +'<h4>How these numbers are honest</h4>'
+      +'<p>Ground-truth labels were fixed on a held-out set the pipeline never sees; labels are re-joined only to '
+      +'score. Adversarial cases (missing tracking on a genuine delivery, account-takeover that looks authorized) '
+      +'are included on purpose — that is why precision is '+pct(m.precision)+', not a suspicious ~100%. '
+      +'A positive prediction means "recommend fighting" (submit or caveats); '+m.borderline_excluded+' borderline '
+      +'cases are excluded from precision/recall and reported separately.</p>'
+      +'<h4>Cost model</h4>'
+      +'<p>A false positive (fighting a losing dispute) costs <code>'+cur+' '+m.false_positive_unit_cost_inr.toLocaleString("en-IN")
+      +'</code> each (ops time + representment fee + penalty). A false negative costs the forgone recoverable amount. '
+      +'Totals: '+cur+' '+m.false_positive_cost_inr.toLocaleString("en-IN")+' FP · '+cur+' '
+      +m.false_negative_cost_inr.toLocaleString("en-IN")+' FN.</p>'
+      +'<h4>Confusion matrix</h4>'
+      +'<table class="cmx"><tr><th>recommendation ↓ / truth →</th><th>win</th><th>lose</th><th>border</th><th>n/a</th></tr>'
+      +row("submit","submit")+row("submit_with_caveats","submit w/ caveats")
+      +row("do_not_submit","do not submit")+row("punt","punt")+'</table>'
+      +'<h4>Guardrails</h4>'
+      +'<p>R5 the system never files a dispute (stops at packet-ready). R6 a missing field is never fabricated. '
+      +'R7 do-not-submit is a real path. R16/R17 the audit trail is append-only and captures human overrides.</p>';
+    document.getElementById("methModal").classList.add("open");
+    document.getElementById("methClose").addEventListener("click",closeMeth);
+  }
+  function closeMeth(){document.getElementById("methModal").classList.remove("open");}
+  document.getElementById("methModal").addEventListener("click",function(e){
+    if(e.target.id==="methModal") closeMeth();});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeMeth();});
+
+  // ---------- footer ----------
+  function renderFooter(){
+    document.getElementById("footer").innerHTML=
+      "Deterministic classifier · retriever · scorer  +  one constrained LLM draft (backend: "+esc(D.backend)
+      +")  ·  generated "+esc(D.generated_at)+"  ·  "+D.n_cases+" cases  ·  no dispute is ever auto-filed (R5)";
+  }
+
+  // ---------- boot ----------
+  document.getElementById("fRec").addEventListener("change",function(e){state.rec=e.target.value;renderQueue();});
+  document.getElementById("fFam").addEventListener("change",function(e){state.fam=e.target.value;renderQueue();});
+  document.getElementById("fSearch").addEventListener("input",function(e){state.q=e.target.value;renderQueue();});
+  document.getElementById("backbtn").addEventListener("click",function(){
+    document.body.classList.remove("viewing-case");});
+
+  renderEval(); famOptions(); renderQueue(); renderFooter();
+  // preselect a clean-win demo case if present, else the first case
+  var demo=D.cases.filter(function(c){return c.recommendation==="submit"&&c.decision_matches_truth;})[0]
+        || D.cases[0];
+  if(demo && window.innerWidth>820) select(demo.dispute_id);
+})();
+</script>
+</body>
+</html>

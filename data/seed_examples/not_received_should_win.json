@@ -1,0 +1,51 @@
+{
+  "dispute_id": "DP-0010",
+  "family_expected": "not_received",
+  "ground_truth": "should_win",
+  "gt_rationale": "Both required fields present with carrier and delivery date; minor supporting fields absent.",
+  "dispute": {
+    "dispute_id": "DP-0010",
+    "transaction_id": "TXN-28612",
+    "reason_code": "4855",
+    "amount_inr": 1299,
+    "deadline": "2026-08-21",
+    "status": "pending"
+  },
+  "transaction": {
+    "transaction_id": "TXN-28612",
+    "amount_inr": 1299,
+    "timestamp": "2026-08-07 09:48 IST",
+    "payment_method": "upi"
+  },
+  "order": {
+    "order_id": "ORD-80223",
+    "transaction_id": "TXN-28612",
+    "sku": "SKU-ELC-778",
+    "shipping_address": "Mumbai, IN",
+    "tracking_number": {
+      "value": "IN3847612536",
+      "weak": false
+    },
+    "delivery_confirmation": {
+      "value": "Signed by: N. Verma, 2026-08-10 18:06 IST",
+      "weak": false
+    },
+    "carrier": {
+      "value": "BlueDart",
+      "weak": false
+    },
+    "shipment_date": null,
+    "delivery_date": {
+      "value": "2026-08-10",
+      "weak": false
+    },
+    "delivery_photo": null
+  },
+  "customer_history": {
+    "customer_id": "CUST-8838",
+    "account_age_days": 184,
+    "prior_order_count": 30
+  },
+  "support_ticket": null,
+  "duplicate_info": null
+}

@@ -1,0 +1,44 @@
+{
+  "dispute_id": "DP-0030",
+  "family_expected": "defective",
+  "ground_truth": "should_win",
+  "gt_rationale": "Archived listing plus QA proof the item matched; policy/support absent but core defense holds.",
+  "dispute": {
+    "dispute_id": "DP-0030",
+    "transaction_id": "TXN-30733",
+    "reason_code": "13.3",
+    "amount_inr": 9450,
+    "deadline": "2026-08-21",
+    "status": "pending"
+  },
+  "transaction": {
+    "transaction_id": "TXN-30733",
+    "amount_inr": 9450,
+    "timestamp": "2026-08-07 10:58 IST",
+    "payment_method": "card"
+  },
+  "order": {
+    "order_id": "ORD-18700",
+    "transaction_id": "TXN-30733",
+    "sku": "SKU-KTC-330",
+    "shipping_address": "Delhi, IN",
+    "product_listing": {
+      "value": "Listing snapshot at purchase: 'SKU-BKS-042 — Hardcover novel, first edition', full spec archived",
+      "weak": false
+    },
+    "return_policy": null,
+    "item_condition_proof": {
+      "value": "Pre-ship QA photos + inspection checklist archived",
+      "weak": false
+    }
+  },
+  "customer_history": {
+    "customer_id": "CUST-3780",
+    "account_age_days": 1065,
+    "prior_order_count": 22
+  },
+  "support_ticket": {
+    "resolution": null
+  },
+  "duplicate_info": null
+}
