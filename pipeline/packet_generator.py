@@ -43,7 +43,7 @@ from __future__ import annotations
 import os
 import re
 
-from pipeline.common import load_family_structures, read_prompt
+from pipeline.common import load_family_structures, load_families, read_prompt
 from pipeline.scorer import recommend
 
 # ---------------------------------------------------------------------------
@@ -224,9 +224,9 @@ def render_family_structure(family) -> str:
 def build_user_prompt(case, family, evidence_used) -> str:
     dispute = case.get("dispute", {})
     template = read_prompt("user_template.txt")
-    fam_display = load_family_structures().get(family, {}).get("claim", family)
+    fam_display = load_families().get(family, {}).get("display_name", family.replace("_", " ").title())
     return template.format(
-        family_name=family.replace("_", " ").title(),
+        family_name=fam_display,
         dispute_id=dispute.get("dispute_id", "—"),
         amount=f"₹{dispute.get('amount_inr', '—')}",
         transaction_id=dispute.get("transaction_id", "—"),
