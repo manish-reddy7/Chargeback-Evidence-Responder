@@ -16,7 +16,7 @@ from pipeline.common import DATA_DIR  # noqa: E402
 from pipeline.retriever import retrieve  # noqa: E402
 from pipeline.scorer import score  # noqa: E402
 from pipeline.packet_generator import (  # noqa: E402
-    generate_packet, validate_packet, _present_and_weak, _render_deterministic,
+    build_user_prompt, generate_packet, validate_packet, _present_and_weak, _render_deterministic,
     missing_clause_templates,
 )
 
@@ -104,6 +104,12 @@ def test_clause_templates_cover_every_structure_field():
     # DRY invariant: every evidence field named in family_structures.yaml has a
     # clause template, so no field is silently dropped from a rendered packet.
     assert missing_clause_templates() == {}, missing_clause_templates()
+
+
+def test_user_prompt_uses_human_readable_family_name():
+    case, s, _ = _gen("not_received")
+    prompt = build_user_prompt(case, "not_received", _present_and_weak(s))
+    assert "DISPUTE REASON FAMILY: Goods/Service Not Received" in prompt
 
 
 def test_do_not_submit_produces_no_packet_but_explains():
